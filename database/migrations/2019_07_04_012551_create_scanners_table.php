@@ -21,12 +21,12 @@ class CreateScannersTable extends Migration
             $table->unsignedBigInteger('asset_id'); 
             $table->unsignedBigInteger('asset_to_id')->nullable(); 
             $table->enum('status', ['on','off'])->default('on');           
-            //$table->unsignedBigInteger('strategy_id');
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('asset_id')->references('id')->on('assets');
             $table->foreign('asset_to_id')->references('id')->on('assets');
-            //$table->foreign('strategy_id')->references('id')->on('strategies');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Scanner;
 use App\Models\Asset;
 use App\Models\Strategy;
+use Auth;
 
 /**
  * Class IndicatorsController.
@@ -28,25 +29,6 @@ class ScannerController extends Controller
         $this->scannerRepository = $scannerRepo;
     }
 
-    /*
-    public function index()
-    {
-    	/*assets para el select*/
-    	//$assets = Asset::orderBy('created_at', 'desc')->where('status', 'on')->pluck('symbol', 'id');
-        /*estrategias para el dropdown*/
-        //$strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
-
-        /*escanners para la tabla*/
-        //$scanners = Scanner::orderBy('created_at', 'desc')->paginate(15);
-
-        /*
-        return view('backoffice.scanners.index')
-            ->with('scanners', $scanners)
-            ->with('strategies', $strategies)
-            ->with('assets', $assets);
-    }
-	*/
-
     public function type($type = 'stock_market')
     {
     	/*assets para el select*/
@@ -56,7 +38,7 @@ class ScannerController extends Controller
         $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
 
         /*escanners para la tabla*/
-        $scanners = Scanner::where('scanner_type', $type)->orderBy('scanners.created_at', 'desc')->paginate(15);
+        $scanners = Scanner::where('user_id', Auth::user()->id)->where('scanner_type', $type)->orderBy('scanners.created_at', 'desc')->paginate(15);
 
         return view('backoffice.scanners.index')
         	->with('type', $type)
@@ -69,6 +51,8 @@ class ScannerController extends Controller
 	{
 		$input = $request->validated();
 				
+		$input['user_id'] = auth()->user()->id;
+
 		$create = $this->scannerRepository->create($input);
 
         toast($create['message'], $create['type'] ,'top-right');

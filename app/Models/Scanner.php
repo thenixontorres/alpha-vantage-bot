@@ -18,9 +18,14 @@ class Scanner extends Model
         'asset_to_id',
         'interval',
         'status',
-        'scanner_type'
-        //'strategy_id'
+        'scanner_type',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function asset()
     {
