@@ -8,7 +8,6 @@
                 <div class="card-body">
                     @include('backoffice.signals.table')                    
                 </div>
-                {{ $signals->links() }}
             </div>
         </div>
     </div>

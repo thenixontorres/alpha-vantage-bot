@@ -27,11 +27,11 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 	
 	Route::resource('signals', 'SignalController')->only(['update']);
 
-	Route::get('signals/type/{type?}','SignalController@type')->name('signals.type');
+	Route::get('signals/index/{type?}','SignalController@index')->name('signals.index');
 
 	Route::resource('scanners', 'ScannerController')->except(['index','show']);
 
-	Route::get('scanners/type/{type?}','ScannerController@type')->name('scanners.type');
+	Route::get('scanners/index/{type?}','ScannerController@index')->name('scanners.index');
 
 	Route::patch('scanners/updateSettings/{scanner}','ScannerController@updateSettings')->name('scanners.updateSettings');
 

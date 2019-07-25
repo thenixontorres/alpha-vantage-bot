@@ -7,6 +7,8 @@
 
 @section('content')
 <div class="container">
+	
+	@if($type != 'all')
 	<div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -18,7 +20,7 @@
 							
 							@include('backoffice.scanners.stock_market_fields')
 
-	                    @else
+	                    @elseif($type == 'physical')
 							
 							@include('backoffice.scanners.physical_fields')
 
@@ -41,6 +43,7 @@
             </div>
         </div>
     </div>
+	@endif
 
     <div class="row justify-content-center pt-5" >
         <div class="col-md-12">
@@ -49,7 +52,6 @@
                 <div class="card-body">
                     @include('backoffice.scanners.table')            
                 </div>
-                {{ $scanners->links() }}
             </div>
         </div>
     </div>

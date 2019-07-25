@@ -29,17 +29,38 @@ class ScannerController extends Controller
         $this->scannerRepository = $scannerRepo;
     }
 
-    public function type($type = 'stock_market')
+    public function index($type = 'all')
     {
-    	/*assets para el select*/
-    	$assets = Asset::orderBy('created_at', 'desc')->where('status', 'on')->where('type', $type)->pluck('symbol', 'id');
     	
         /*estrategias para el dropdown*/
         $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
 
-        /*escanners para la tabla*/
-        $scanners = Scanner::where('user_id', Auth::user()->id)->where('scanner_type', $type)->orderBy('scanners.created_at', 'desc')->paginate(15);
+        if ($type != 'all') 
+        {
+        	 /*assets para el select*/
+    		$assets = 
+    			Asset::orderBy('created_at', 'desc')
+    			->where('status', 'on')
+    			->where('type', $type)
+    			->pluck('symbol', 'id');
 
+        	/*escanners para la tabla*/
+        	$scanners = 
+        		Scanner::where('user_id', Auth::user()->id)
+        		->where('scanner_type', $type)
+        		->orderBy('scanners.created_at', 'desc')
+        		->get();
+        }else{
+        	/*assets para el select*/
+    		$assets = [];
+
+        	/*escanners para la tabla*/
+        	$scanners = 
+        		Scanner::where('user_id', Auth::user()->id)
+        		->orderBy('scanners.created_at', 'desc')
+        		->get();
+        }
+       
         return view('backoffice.scanners.index')
         	->with('type', $type)
             ->with('scanners', $scanners)
