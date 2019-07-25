@@ -50,12 +50,6 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 	});
 	
 	Route::resource('settings', 'SettingController')->only(['index','update']);
-
-	/*
-	Route::resource('indicators', 'IndicatorController')->only(['index','edit','update']);
-
-	Route::post('indicators/changeStatus','IndicatorController@changeStatus')->name('indicators.changeStatus');
-	*/
 		
 });
 

@@ -13,7 +13,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-3" id="dashNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Escaners
+                            Mis escaners
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
@@ -29,7 +29,7 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-3" id="dashNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Alertas
+                            Mis alertas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             

@@ -11,7 +11,7 @@
     <!--favicon icon-->
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
-    <title>@yield('title')</title>
+    <title>@yield('title', 'TURTRADING')</title>
 
     <!--web fonts-->
     <link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
@@ -107,7 +107,7 @@
         @endif
     @endif
     
-    @yield('scripts')
+    @yield('js')
 
 </body>
 </html>

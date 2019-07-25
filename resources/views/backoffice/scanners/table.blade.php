@@ -1,4 +1,4 @@
-<table class="table table-bordered table-sm">
+<table class="table table-bordered table-sm" id="table">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -105,6 +105,9 @@
 
 @section('js')
 @parent
+
+<script src="{{ asset('js/default_datatable.js')}}"></script>
+
 <script type="text/javascript">
     function d(id, success = true)
     {
