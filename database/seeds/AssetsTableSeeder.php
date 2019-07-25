@@ -16,7 +16,7 @@ class AssetsTableSeeder extends Seeder
             'symbol'         => 'NFLX',
             'name'         => 'Netflix Inc.',
             'type'      => 'stock_market',
-            'status'  => 'off',
+            'status'  => 'on',
             'created_at' => now()
         ]);
 

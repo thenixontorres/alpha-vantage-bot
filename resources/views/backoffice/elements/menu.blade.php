@@ -42,11 +42,37 @@
                     </li>
 
                     @if(Auth::user()->type == 'admin')
-                    <li class="nav-item">
                     
-                        <a class="nav-link mr-lg-3" id="" href="{{ route('admin.index') }}">Administracion</a>
-                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mr-lg-3" id="dashNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Escaners
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dashNav">
+                            
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index') }}">Todos</a>
+                            
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['stock_market']) }}">Acciones</a>
+
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['physical']) }}">Forex</a>
+
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['digital']) }}">Criptos</a>
+                        </div>
                     </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mr-lg-3" id="dashNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Alertas
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dashNav">
+                            
+                            <a class="dropdown-item" href="{{ route('admin.signals.index') }}">Todas</a>
+
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['stock_market']) }}">Acciones</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['physical']) }}">Forex</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['digital']) }}">Criptos</a>
+                        </div>
+                    </li>
+
                     @endif
                 </ul>
                 @else

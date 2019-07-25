@@ -20,7 +20,7 @@ class CreateScannersTable extends Migration
             $table->enum('interval', ['1min', '5min', '15min', '30min','60min', 'daily','weekly','monthly'])->default('60min');
             $table->unsignedBigInteger('asset_id'); 
             $table->unsignedBigInteger('asset_to_id')->nullable(); 
-            $table->enum('status', ['on','off'])->default('on');           
+            $table->enum('status', ['on','off'])->default('off');
             $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();

@@ -60,7 +60,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
                             <a class="dropdown-item" href="{{ route('backoffice.index') }}">Inicio</a>
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.settings.index') }}">Configuracion</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.users.index') }}">Mi cuenta</a>
 
                             <div class="dropdown-divider"></div>
                             

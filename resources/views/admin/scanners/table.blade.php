@@ -7,7 +7,7 @@
             <th>Resumen</th>
             <th>Vincular</th>
             <th>Acciones</th>
-            <th>Notificaciones</th>
+            <th>Estatus</th>
             <th>Escanear</th>
         </tr>
     </thead>

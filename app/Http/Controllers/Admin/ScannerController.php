@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Backoffice\CreateScannerRequest;
-use App\Http\Requests\Backoffice\UpdateScannerRequest;
-use App\Http\Requests\Backoffice\UpdateScannerSettingsRequest;
-use App\Http\Requests\Backoffice\DetachStrategyRequest;
-use App\Http\Requests\Backoffice\AttachStrategyRequest;
+use App\Http\Requests\Admin\CreateScannerRequest;
+use App\Http\Requests\Admin\UpdateScannerRequest;
+use App\Http\Requests\Admin\UpdateScannerSettingsRequest;
+use App\Http\Requests\Admin\DetachStrategyRequest;
+use App\Http\Requests\Admin\AttachStrategyRequest;
 use App\Repositories\ScannerRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Scanner;
@@ -46,7 +46,6 @@ class ScannerController extends Controller
 
         	/*escanners para la tabla*/
         	$scanners = 
-        		Scanner::where('user_id', Auth::user()->id)
         		->where('scanner_type', $type)
         		->orderBy('scanners.created_at', 'desc')
         		->get();
@@ -56,12 +55,11 @@ class ScannerController extends Controller
 
         	/*escanners para la tabla*/
         	$scanners = 
-        		Scanner::where('user_id', Auth::user()->id)
         		->orderBy('scanners.created_at', 'desc')
         		->get();
         }
        
-        return view('backoffice.scanners.index')
+        return view('admin.scanners.index')
         	->with('type', $type)
             ->with('scanners', $scanners)
             ->with('strategies', $strategies)
@@ -72,8 +70,6 @@ class ScannerController extends Controller
 	{
 		$input = $request->validated();
 				
-		$input['user_id'] = auth()->user()->id;
-
 		$create = $this->scannerRepository->create($input);
 
         toast($create['message'], $create['type'] ,'top-right');
@@ -83,21 +79,11 @@ class ScannerController extends Controller
 
 	public function edit(Scanner $scanner){
 
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$intervals = $this->scannerRepository->getIntervals();
 
         $series = $this->scannerRepository->getSeries();
 
-    	//$assets = Asset::orderBy('created_at', 'desc')->where('status', 'on')->pluck('symbol', 'id');
-
-        //dd($scanner->settings_array);
-        return view('backoffice.scanners.edit')
+        return view('admin.scanners.edit')
 			->with('scanner', $scanner)
 			->with('intervals', $intervals)
 			->with('series', $series);
@@ -105,13 +91,6 @@ class ScannerController extends Controller
 
 	public function update(UpdateScannerRequest $request, Scanner $scanner)
 	{
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$input = $request->validated();
 
 		$update = $this->scannerRepository->update($input, $scanner);
@@ -123,13 +102,6 @@ class ScannerController extends Controller
 
 	public function updateSettings(UpdateScannerSettingsRequest $request, Scanner $scanner)
 	{		
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$input = $request->validated();
 
 		$update = $this->scannerRepository->updateSettings($scanner, $input);
@@ -142,13 +114,6 @@ class ScannerController extends Controller
 
 	public function updateStatus(Request $request, Scanner $scanner){
 		
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$scanner->status = $request->status;
 		
 		$scanner->update();
@@ -158,42 +123,8 @@ class ScannerController extends Controller
 		return redirect()->back();
 	}
 
-	public function show(Scanner $scanner)
-	{ 
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
-	    return view('backoffice.scanners.show')
-			->with('scanner', $scanner);
-	}
-
-	public function apply(Scanner $scanner)
-	{
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
-		$response = $this->scannerRepository->applyStrategy($scanner);
-		
-		return response()->json($response, $response['code']);
-	}
-
 	public function destroy(Scanner $scanner)
 	{
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$scanner->strategies()->detach();
 		
 		foreach ($scanner->signals as $signal) 
@@ -214,13 +145,6 @@ class ScannerController extends Controller
 
 		$scanner = Scanner::find($request->scanner_id);
 
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-
 		$response = $this->scannerRepository->detachStrategy($scanner, $request->strategy_id);
 
         toast($response['message'], $response['type'] ,'top-right');
@@ -234,13 +158,6 @@ class ScannerController extends Controller
 
 		$scanner = Scanner::find($request->scanner_id);
 
-		if ($scanner->user_id != auth()->user()->id) 
-        {
-            toast('Permiso denegado', 'error' ,'top-right');
-        
-            return redirect()->back();
-        }
-        
 		$response = $this->scannerRepository->attachStrategy($scanner, $request->strategy_id);
 
         toast($response['message'], $response['type'] ,'top-right');
