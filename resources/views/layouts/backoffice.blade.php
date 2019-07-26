@@ -57,9 +57,25 @@
 
     <!--main content wrapper-->
     <div class="content-wrapper">
-
-        @yield('content')
         
+        <div class="container">
+
+            <div class="page-title mb-4 d-flex align-items-center">
+                <div class="mr-auto">
+                    <h4 class="weight500 d-inline-block pr-3 mr-3 border-right">@yield('title')</h4>
+                    <nav aria-label="breadcrumb" class="d-inline-block ">
+                        <ol class="breadcrumb p-0">
+                            <li class="breadcrumb-item"><a href="{{route('backoffice.index')}}">Backoffice</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> @yield('title')</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+            @yield('content')
+
+
     </div>
     <!--/main content wrapper-->
 

@@ -1,4 +1,7 @@
 @extends('layouts.backoffice')
+
+@section('title', $scanner->merged_symbols)
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center" >

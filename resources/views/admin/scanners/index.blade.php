@@ -1,5 +1,7 @@
 @extends('layouts.backoffice')
 
+@section('title', 'Escaners')
+
 @section('css')
 @parent
 <link href="{{asset('vendor/select2/css/select2.min.css')}}" rel="stylesheet" />

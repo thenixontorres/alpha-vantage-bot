@@ -1,7 +1,10 @@
 @extends('layouts.backoffice')
+
+@section('title', 'Configuraciones')
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center pt-5" >
+    <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header"> Configuración del sistema </div>

@@ -1,10 +1,12 @@
 @extends('layouts.backoffice')
+
+@section('title', 'Mis cuenta')
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center pt-5" >
+    <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Mi cuenta </div>
                 <div class="card-body">
                   {!! Form::model(Auth::user(), ['route' => ['backoffice.users.update', Auth::user()], 'method' => 'patch']) !!}
                       

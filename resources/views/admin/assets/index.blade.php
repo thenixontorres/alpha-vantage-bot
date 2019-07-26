@@ -1,4 +1,7 @@
 @extends('layouts.backoffice')
+
+@section('title', 'Activos')
+
 @section('content')
 <div class="container">
     

@@ -1,4 +1,7 @@
 @extends('layouts.backoffice')
+
+@section('title', 'Editar '.$scanner->merged_symbols)
+
 @section('content')
 <div class="container">
     <div class="row">

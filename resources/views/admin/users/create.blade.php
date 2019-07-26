@@ -1,10 +1,12 @@
 @extends('layouts.backoffice')
+
+@section('title', 'Nuevo usuario')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center pt-5" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Nuevo usuario</div>
                 <div class="card-body">
                   {!! Form::open(['route' => ['admin.users.store']]) !!}
                       
