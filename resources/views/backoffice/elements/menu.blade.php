@@ -1,11 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="box-container">
             <div class="collapse navbar-collapse" id="navbarListResponsive">
-                <!--header nav links-->
-                @if(!Auth::guest())
-                
+                <!--header nav links-->                
                 <ul class="navbar-nav header-links">
-                 	<li class="nav-item">
+                 	
+                    <li class="nav-item">
                     
                         <a class="nav-link mr-lg-3" id="" href="{{ route('backoffice.index') }}">Inicio</a>
                     
@@ -86,26 +85,22 @@
                             <a class="dropdown-item" href="{{ route('admin.assets.index', ['digital']) }}">Criptos</a>
                         </div>
                     </li>
-
-                    @endif
-                </ul>
-                @else
-                <ul class="navbar-nav header-links">
-                    <li class="nav-item active">
-                        <a class="nav-link mr-lg-3" href="index.html">
-
-                        </a>
-                    </li>
-                  
+                    
                     <li class="nav-item">
                     
-                        <a class="nav-link mr-lg-3" id="" href="{{ route('auth.login') }}">Login</a>
+                        <a class="nav-link mr-lg-3" id="" href="{{ route('backoffice.index') }}">Usuarios</a>
                     
                     </li>
-             
+
+                    <li class="nav-item">
+                    
+                        <a class="nav-link mr-lg-3" id="" href="{{ route('admin.strategies.index') }}">Estrategias</a>
+                    
+                    </li>
+
+                    @endif
+
                 </ul>
-                @endif
-           
             </div>
         </div>
     </nav>

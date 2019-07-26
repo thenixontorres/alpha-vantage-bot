@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-group clearfix">
-                                <button type="submit" class="btn btn-success float-right">LOGIN</button>
+                                <button type="submit" class="btn btn-primary float-right">LOGIN</button>
                             </div>
 
                         
