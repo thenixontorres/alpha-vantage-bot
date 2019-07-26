@@ -88,7 +88,7 @@
                     
                     <li class="nav-item">
                     
-                        <a class="nav-link mr-lg-3" id="" href="{{ route('backoffice.index') }}">Usuarios</a>
+                        <a class="nav-link mr-lg-3" id="" href="{{ route('admin.users.index') }}">Usuarios</a>
                     
                     </li>
 

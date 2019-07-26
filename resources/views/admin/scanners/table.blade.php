@@ -129,6 +129,7 @@
             $('#d-'+id).submit();
         }
     }
+    
     function del(id, success = true)
     {
         if (success) {

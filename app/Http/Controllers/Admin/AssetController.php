@@ -62,6 +62,13 @@ class AssetController extends Controller
     {
         if (!empty($asset->scanner)) 
         {
+            $asset->scanner->strategies()->detach();
+
+            foreach ($asset->scanner->signals as $signal) 
+            {
+                $signal->delete();
+            }
+            
             $asset->scanner->delete();
         }
         
