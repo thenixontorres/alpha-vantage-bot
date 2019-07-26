@@ -5,22 +5,10 @@
             {{Form::select('status', ['on'=>'On','off'=>'Off'] ,null, ['class'=> 'form-control', 'required'])}}
           <small id="statusHelp" class="form-text text-muted">Con estatus Off todas las estrategias y peticiones se detendran.</small>
         </div>
-
-        <div class="form-group col-md-12">
-          {{Form::label('type_request','Tipo de periodo de peticiones:')}}
-          {{Form::select('type_request', ['strategy'=>'Segun la estrategia','strict'=>'Tiempo estricto'] ,null, ['class'=> 'form-control', 'required'])}}
-          <small id="statusHelp" class="form-text text-muted">Seleccionando "Segun la estrategia" el intervalo de escaneo dependera del configurado en la estrategia. Con "Tiempo estricto" debera especificar un perdiodo de tiempo general.</small>
-        </div>
         
         <div class="form-group col-md-12">
-            
-            {{Form::label('strict_time_request','Frecuencia de actualziación:')}}
-            
-            {{Form::select('strict_time_request', $intervals , null , ['class'=> 'form-control', 'placeholder'=>'Seleccione un intervalo','required'])}}
-
-            {{-- 
-            {{Form::number('strict_time_request' ,null, ['class'=> 'form-control', 'required'])}}
-            --}}
+            {{Form::label('scanners_limit','Cantidad de scanners por usuario:')}}
+            {{Form::number('scanners_limit' ,null, ['class'=> 'form-control', 'required'])}} 
         </div>
 
         <div class="form-group col-md-12">

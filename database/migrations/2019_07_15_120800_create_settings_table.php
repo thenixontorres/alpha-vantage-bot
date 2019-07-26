@@ -16,11 +16,9 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('status', ['on', 'off'])->default('on');
-            $table->enum('type_request', ['strategy', 'strict'])->default('strict');
-            $table->enum('strict_time_request', ['1min', '5min', '15min', '30min','60min', 'daily','weekly','monthly'])->default('60min');
-            
             $table->string('alpha_vantage_key');
             $table->string('notifications_mail');
+            $table->string('scanners_limit')->default(3);
             $table->softDeletes();
             $table->timestamps();
         });

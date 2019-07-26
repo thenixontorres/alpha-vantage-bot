@@ -21,7 +21,7 @@
                     <div class="row">
                         @foreach($scanner->strategies as $strategy)
     	                    <div class="col-md-{{$scanner->count_cols}} pt-5">
-                                @include('backoffice.scanners.alerts_table')
+                                @include('admin.scanners.alerts_table')
     						</div>
                         @endforeach
 	                    <div class="col-md-12">
@@ -44,7 +44,6 @@
 
     {{-- Logica del scanner--}}
    <script> 
-        console.log('este si se ejecuto');
 
         $(document).ready(function(){
 
@@ -56,14 +55,9 @@
             {{-- ejecutamos la estrategia durante la primera carga --}}
             applyStrategy();
             
-            @if(getSetting("type_request") == 'strategy')
-                {{-- si el periodo es segun la estrategia tomamos el tiempo del escanner--}}
-                var miliseconds = '{{$scanner->interval_ms}}';
-            @else
-                {{-- si el tiempo es estricto, lo tomamos de las configuraciones --}}
-                var miliseconds = '{{getStrictTimeRequestMs()}}';
-            @endif
-
+            {{-- si el periodo es segun la estrategia tomamos el tiempo del escanner--}}
+            var miliseconds = '{{$scanner->interval_ms}}';
+          
             {{-- luego ejecutamos la estrategia segun el periodo configurado--}}
             setInterval(applyStrategy, miliseconds);
 
@@ -71,7 +65,7 @@
             function applyStrategy()
             {
                 console.log('getting...');
-                var route = '{{route('backoffice.scanners.apply', $scanner)}}';
+                var route = '{{route('admin.scanners.apply', $scanner)}}';
                 $.get(route).then(setSignals);
             }
 

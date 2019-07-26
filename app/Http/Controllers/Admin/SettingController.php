@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backoffice\UpdateSettingRequest;
+use App\Http\Requests\Admin\UpdateSettingRequest;
 use App\Repositories\ScannerRepository;
 use App\Models\Setting;
 
@@ -27,7 +27,7 @@ class SettingController extends Controller
 
         $intervals = $this->scannerRepository->getIntervals();
 
-    	return view('backoffice.settings.index')
+    	return view('admin.settings.index')
             ->with('setting', $setting)
             ->with('intervals', $intervals);
     }
@@ -35,9 +35,6 @@ class SettingController extends Controller
     public function update(UpdateSettingRequest $request, Setting $setting)
     {
     	$input = $request->validated();
-
-        /*de segundos a milisegundos*/
-        //$input['strict_time_request'] = $input['strict_time_request']*1000;
 
         $setting->fill($input);
 

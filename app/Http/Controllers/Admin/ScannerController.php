@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Scanner;
 use App\Models\Asset;
 use App\Models\Strategy;
+use App\User;
 use Auth;
 
 /**
@@ -46,6 +47,7 @@ class ScannerController extends Controller
 
         	/*escanners para la tabla*/
         	$scanners = 
+                Scanner::orderBy('created_at', 'desc')
         		->where('scanner_type', $type)
         		->orderBy('scanners.created_at', 'desc')
         		->get();
@@ -55,21 +57,25 @@ class ScannerController extends Controller
 
         	/*escanners para la tabla*/
         	$scanners = 
+                Scanner::orderBy('created_at', 'desc')
         		->orderBy('scanners.created_at', 'desc')
         		->get();
         }
-       
+        
+        $users = User::where('status','active')->pluck('name', 'id');
+
         return view('admin.scanners.index')
         	->with('type', $type)
             ->with('scanners', $scanners)
             ->with('strategies', $strategies)
-            ->with('assets', $assets);
+            ->with('assets', $assets)
+            ->with('users', $users);
     }
 
 	public function store(CreateScannerRequest $request)
 	{
 		$input = $request->validated();
-				
+			
 		$create = $this->scannerRepository->create($input);
 
         toast($create['message'], $create['type'] ,'top-right');
@@ -165,4 +171,17 @@ class ScannerController extends Controller
         return redirect()->back();
 
 	}
+
+    public function show(Scanner $scanner)
+    { 
+        return view('admin.scanners.show')
+            ->with('scanner', $scanner);
+    }
+
+    public function apply(Scanner $scanner)
+    {
+        $response = $this->scannerRepository->applyStrategy($scanner);
+        
+        return response()->json($response, $response['code']);
+    }
 }

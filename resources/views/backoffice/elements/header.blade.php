@@ -61,6 +61,12 @@
                             <a class="dropdown-item" href="{{ route('backoffice.index') }}">Inicio</a>
                             
                             <a class="dropdown-item" href="{{ route('backoffice.users.index') }}">Mi cuenta</a>
+                            
+                            @if(Auth::user()->type == 'admin')
+                                
+                                <a class="dropdown-item" href="{{ route('admin.settings.index') }}">Configuraciones</a>
+
+                            @endif
 
                             <div class="dropdown-divider"></div>
                             

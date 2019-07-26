@@ -2,7 +2,7 @@
 
 @section('css')
 @parent
-<link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('vendor/select2/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -60,7 +60,7 @@
 
 @section('js')
 @parent
-<script src="{{ asset('vendor/select2/select2.min.js')}}"></script>
+<script src="{{ asset('vendor/select2/js/select2.min.js')}}"></script>
 <script>
 	$(document).ready(function() {
 	    $('.select2').select2();

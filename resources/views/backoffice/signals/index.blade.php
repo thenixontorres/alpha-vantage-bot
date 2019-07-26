@@ -13,3 +13,22 @@
     </div>
 </div>
 @endsection
+@section('js')
+    @parent
+    {{-- Logica del scanner--}}
+   <script> 
+        $(document).ready(function(){
+
+            console.log('starting...');
+            
+            {{-- luego ejecutamos la estrategia segun el periodo configurado--}}
+            setInterval(updateSignals, 60000);
+
+            /*Consulta de la estrategia*/
+            function updateSignals()
+            {
+                location.reload();
+            }
+        });
+    </script>
+@endsection

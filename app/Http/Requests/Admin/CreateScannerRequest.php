@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backoffice;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\ScannerValdation;

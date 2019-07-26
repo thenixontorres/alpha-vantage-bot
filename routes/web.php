@@ -18,14 +18,6 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 	Route::get('/','HomeController@index')->name('index');
 
 	Route::resource('users', 'UserController')->only(['index','update']);
-
-	Route::resource('assets', 'AssetController')->except(['edit','show','update']);
-
-	Route::get('assets/type/{type?}','AssetController@type')->name('assets.type');
-
-	Route::post('assets/changeStatus','AssetController@changeStatus')->name('assets.changeStatus');
-
-	Route::get('av/autocomplete','AlphaVantageController@autocomplete')->name('alphaVantage.autocomplete');
 	
 	Route::resource('signals', 'SignalController')->only(['update']);
 
@@ -50,14 +42,14 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 		Route::get('scanners/{scanner}','ScannerController@show')->name('scanners.show');
 
 	});
-	
-	Route::resource('settings', 'SettingController')->only(['index','update']);
-		
+
 });
 
 /*ADMIN ROUTES*/
 /*BACKOFFICE ROUTES*/
 Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','admin'])->group(function () {
+
+	Route::resource('settings', 'SettingController')->only(['index','update']);
 
 	Route::resource('signals', 'SignalController')->only(['update']);
 
@@ -74,6 +66,18 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','
 	Route::post('scanners/detachStrategy','ScannerController@detachStrategy')->name('scanners.detachStrategy');
 
 	Route::post('scanners/attachStrategy','ScannerController@attachStrategy')->name('scanners.attachStrategy');
-		
+
+	Route::get('scanners/apply/{scanner}','ScannerController@apply')->name('scanners.apply');
+
+	Route::get('scanners/{scanner}','ScannerController@show')->name('scanners.show');
+
+	Route::resource('assets', 'AssetController')->except(['edit','show','update']);
+
+	Route::get('assets/index/{type?}','AssetController@index')->name('assets.index');
+
+	Route::post('assets/changeStatus','AssetController@changeStatus')->name('assets.changeStatus');
+
+	Route::get('av/autocomplete','AlphaVantageController@autocomplete')->name('alphaVantage.autocomplete');
+	
 });
 

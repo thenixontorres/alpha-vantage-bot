@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header"> Registrar activo </div>
                 <div class="card-body">
-                    {!! Form::open(['route'=>'backoffice.assets.store', 'class'=>'form-inline']) !!}
+                    {!! Form::open(['route'=>'admin.assets.store', 'class'=>'form-inline']) !!}
                     <div class="form-group col-md-10">
                         {{Form::text('keywords', null, ['class'=> 'form-control typeahead', 'placeholder'=>'Nombre del activo', 'style'=>'width:100%;', 'id'=>'keywords', 'required', 'autocomplete'=>'off'])}}
                         {{Form::hidden('type', 'stock_market')}}
@@ -28,9 +28,8 @@
             <div class="card">
                 <div class="card-header"> Lista de activos </div>
                 <div class="card-body">
-                    @include('backoffice.assets.table')                    
+                    @include('admin.assets.table')                    
                 </div>
-                {{ $assets->links() }}
             </div>
         </div>
     </div>
@@ -41,7 +40,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
     
-      var path = "{{ route('backoffice.alphaVantage.autocomplete') }}";
+      var path = "{{ route('admin.alphaVantage.autocomplete') }}";
     
       $('#keywords').typeahead({
           source:  function (query, process) {

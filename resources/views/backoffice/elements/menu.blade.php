@@ -73,6 +73,20 @@
                         </div>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mr-lg-3" id="dashNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Activos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dashNav">
+                            
+                            <a class="dropdown-item" href="{{ route('admin.assets.index') }}">Todos</a>
+
+                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['stock_market']) }}">Acciones</a>
+                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['physical']) }}">Forex</a>
+                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['digital']) }}">Criptos</a>
+                        </div>
+                    </li>
+
                     @endif
                 </ul>
                 @else

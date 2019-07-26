@@ -1,6 +1,7 @@
 <table class="table table-bordered table-sm" id="table">
     <thead>
         <tr>
+            <th>Usuario</th>
             <th>Fecha</th>
             <th>Activo</th>
             <th>Estrategia</th>
@@ -13,6 +14,7 @@
     <tbody>
         @foreach($signals as $signal)
        		<tr>
+          <td>{{$signal->scanner->user->name}}</td>
           <td>{{$signal->time_signal}}</td>
        		<td>{{$signal->scanner->merged_symbols}}</td>
        		<td>
@@ -43,7 +45,7 @@
 
             @if($signal->status == 'ignored')
               
-            {!! Form::model($signal, ['route' => ['backoffice.signals.update', $signal], 'method' => 'patch']) !!}
+            {!! Form::model($signal, ['route' => ['admin.signals.update', $signal], 'method' => 'patch']) !!}
 
               {!! Form::hidden('status', 'success') !!}
               
@@ -51,7 +53,7 @@
 
             {!! Form::close() !!}
 
-            {!! Form::model($signal, ['route' => ['backoffice.signals.update', $signal], 'method' => 'patch']) !!}
+            {!! Form::model($signal, ['route' => ['admin.signals.update', $signal], 'method' => 'patch']) !!}
 
               {!! Form::hidden('status', 'failed') !!}
               

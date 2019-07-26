@@ -44,8 +44,6 @@
 
     {{-- Logica del scanner--}}
    <script> 
-        console.log('este si se ejecuto');
-
         $(document).ready(function(){
 
             console.log('starting...');
@@ -55,15 +53,9 @@
             
             {{-- ejecutamos la estrategia durante la primera carga --}}
             applyStrategy();
+            {{-- si el periodo es segun la estrategia tomamos el tiempo del escanner--}}
+            var miliseconds = '{{$scanner->interval_ms}}';
             
-            @if(getSetting("type_request") == 'strategy')
-                {{-- si el periodo es segun la estrategia tomamos el tiempo del escanner--}}
-                var miliseconds = '{{$scanner->interval_ms}}';
-            @else
-                {{-- si el tiempo es estricto, lo tomamos de las configuraciones --}}
-                var miliseconds = '{{getStrictTimeRequestMs()}}';
-            @endif
-
             {{-- luego ejecutamos la estrategia segun el periodo configurado--}}
             setInterval(applyStrategy, miliseconds);
 

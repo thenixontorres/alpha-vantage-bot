@@ -13,7 +13,7 @@ class ApplyStrategiesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'strategies:apply';
+    protected $signature = 'strategies:apply {interval : Frecuencia de actualizacion}';
 
     /**
      * The console command description.
@@ -47,6 +47,8 @@ class ApplyStrategiesCommand extends Command
         /*1 Verificamos el status general del scanner */
         $this->warn('1) Scanner status:');
 
+        $interval = $this->argument('interval');
+
         $status = getSetting('status');
 
         $this->info('The scanner is "'.$status.'"');
@@ -56,7 +58,7 @@ class ApplyStrategiesCommand extends Command
             /*2 Buscamos los scanners que esten encendidos */
             $this->warn('2) Finding active scanners:');
 
-            $scanners = Scanner::where('status', 'on')->get();
+            $scanners = Scanner::where('status', 'on')->where('interval', $interval)->get();
 
             $this->info($scanners->count().' scanners found');
 

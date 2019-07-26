@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header"> Configuración del sistema </div>
                 <div class="card-body">
-                  {!! Form::model($setting, ['route' => ['backoffice.settings.update', $setting], 'method' => 'patch']) !!}
+                  {!! Form::model($setting, ['route' => ['admin.settings.update', $setting], 'method' => 'patch']) !!}
                       
-                    @include('backoffice.settings.fields')
+                    @include('admin.settings.fields')
                     
                     <div class="form-group row mb-0">
                       <div class="col-md-12">

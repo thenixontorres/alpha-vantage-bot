@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                {!! Form::model($scanner, ['route' => ['backoffice.scanners.update', $scanner], 'method' => 'patch']) !!}
+                                {!! Form::model($scanner, ['route' => ['admin.scanners.update', $scanner], 'method' => 'patch']) !!}
                                     
                                     <div class="form-group row mb-0">
                                     
@@ -51,7 +51,7 @@
                         <div class="row">
     	                  	<div class="col-md-12">
 
-                                {!! Form::model($scanner, ['route' => ['backoffice.scanners.updateSettings', $scanner], 'method' => 'patch']) !!}
+                                {!! Form::model($scanner, ['route' => ['admin.scanners.updateSettings', $scanner], 'method' => 'patch']) !!}
                                     
                                     <div class="form-group row mb-0">
                                     

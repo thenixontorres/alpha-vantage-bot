@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\Backoffice\ApiTestRequest;
 use App\Http\Controllers\Controller;
 use App\Abstracts\AlphaVantage;
 

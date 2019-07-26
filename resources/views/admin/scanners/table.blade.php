@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nombre</th>
-            {{-- <th>Símbolo</th> --}}
+            <th>Usuario</th> 
             <th>Estrategia</th>
             <th>Resumen</th>
             <th>Vincular</th>
@@ -14,12 +14,12 @@
     <tbody>
         @foreach($scanners as $scanner)
         <tr>
-            {{-- <td>{{$scanner->asset->name}}</td> --}}
+            <td>{{$scanner->user->name}}</td>
             <td>{{$scanner->merged_symbols}}</td>
             <td>
                 @foreach($scanner->strategies as $strategy)
 
-                    {!! Form::open(['route' => ['backoffice.scanners.detachStrategy'], 'id'=> 'd-'.$strategy->id.'-'.$scanner->id]) !!}
+                    {!! Form::open(['route' => ['admin.scanners.detachStrategy'], 'id'=> 'd-'.$strategy->id.'-'.$scanner->id]) !!}
                         
                         {{Form::hidden('strategy_id', $strategy->id)}}
                         
@@ -44,7 +44,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @foreach($strategies as $strategy)
                             
-                            {{Form::open(['route'=>'backoffice.scanners.attachStrategy', 'id'=>'a-'.$strategy->id.'-'.$scanner->id])}}
+                            {{Form::open(['route'=>'admin.scanners.attachStrategy', 'id'=>'a-'.$strategy->id.'-'.$scanner->id])}}
 
                                 {{Form::hidden('strategy_id', $strategy->id)}}
 
@@ -64,9 +64,9 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         
-                        <a class="dropdown-item" href="{{ route('backoffice.scanners.edit', [$scanner]) }}">Configurar escaner</a>
+                        <a class="dropdown-item" href="{{ route('admin.scanners.edit', [$scanner]) }}">Configurar escaner</a>
 
-                        {!! Form::open(['route' => ['backoffice.scanners.destroy', $scanner], 'method' => 'delete', 'id'=> 'del-'.$scanner->id]) !!}
+                        {!! Form::open(['route' => ['admin.scanners.destroy', $scanner], 'method' => 'delete', 'id'=> 'del-'.$scanner->id]) !!}
                             <a class="dropdown-item" href="#" onclick="del('{{$scanner->id}}');">Eliminar escaner</a>
                         {!! Form::close() !!}
                     </div>
@@ -75,7 +75,7 @@
             <td>
                 @if(!empty($scanner->strategies->first()))
 
-                    {!! Form::model($scanner, ['route' => ['backoffice.scanners.updateStatus', $scanner], 'method' => 'patch']) !!}
+                    {!! Form::model($scanner, ['route' => ['admin.scanners.updateStatus', $scanner], 'method' => 'patch']) !!}
 
                         @if($scanner->status == 'on')
                             {{ Form::hidden('status', 'off') }}
@@ -93,7 +93,7 @@
             </td>
             <td> 
                 @if(!empty($scanner->strategies->first()))
-                    <a href="{{route('backoffice.scanners.show', $scanner)}}" class="btn btn-primary"><i class="fa fa-play"></i></a>
+                    <a href="{{route('admin.scanners.show', $scanner)}}" class="btn btn-primary"><i class="fa fa-play"></i></a>
                 @else
                     <button class="btn btn-secondary"><i class="fa fa-play"></i></button>
                 @endif

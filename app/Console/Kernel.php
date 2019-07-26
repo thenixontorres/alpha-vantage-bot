@@ -25,35 +25,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $frecuency = getSetting('strict_time_request');
-
-        switch ($frecuency) {
-            case '1min':
-                $schedule->command('strategies:apply')->everyMinute();
-                break;
-            case '5min':
-                $schedule->command('strategies:apply')->everyFiveMinutes();
-                break;
-            case '15min':
-                $schedule->command('strategies:apply')->everyFifteenMinutes();
-                break;
-            case '30min':
-                $schedule->command('strategies:apply')->everyThirtyMinutes();
-                break;
-            case '60min':
-                $schedule->command('strategies:apply')->hourly();
-                break;
-            case 'daily':
-                $schedule->command('strategies:apply')->daily();
-                break;
-            case 'weekly':
-                $schedule->command('strategies:apply')->weekly();
-                break;
-            default:
-                $schedule->command('strategies:apply')->monthly();
-                break;
-        }
-
+        $schedule->command('strategies:apply', ['interval', '1min'])->everyMinute();
+        $schedule->command('strategies:apply', ['interval', '5min'])->everyFiveMinutes();
+        $schedule->command('strategies:apply', ['interval', '15min'])->everyFifteenMinutes();
+        $schedule->command('strategies:apply', ['interval', '30min'])->everyThirtyMinutes();
+        $schedule->command('strategies:apply', ['interval', '60min'])->hourly();
+        $schedule->command('strategies:apply', ['interval', 'daily'])->daily();
+        $schedule->command('strategies:apply', ['interval', 'weekly'])->weekly();
+        $schedule->command('strategies:apply', ['interval', 'monthly'])->monthly();
     }
 
     /**

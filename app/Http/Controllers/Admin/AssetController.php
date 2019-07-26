@@ -1,49 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Backoffice;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backoffice\CreateAssetRequest;
+use App\Http\Requests\Admin\CreateAssetRequest;
 use App\Models\Asset;
 use App\Models\Strategy;
 use App\Abstracts\AlphaVantage;
 
 class AssetController extends Controller
 {
-    /*
-    public function index()
-    {    	
-        $assets = Asset::orderBy('created_at', 'desc')->where('status', 'on')->paginate(15);
-        
-        $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
 
-        return view('backoffice.assets.index')
-            ->with('strategies', $strategies)
-            ->with('assets', $assets);
-    }
-    */
-
-    public function type($type = 'stock_market')
+    public function index($type = 'all')
     {
-        $assets = Asset::orderBy('created_at', 'desc')->where('type', $type)->paginate(15);
-        
-        $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
-        
-        return view('backoffice.assets.index')
+        if ($type != 'all') 
+        {
+            $assets = Asset::orderBy('created_at', 'desc')->where('type', $type)->get();
+        }else{
+            $assets = Asset::orderBy('created_at', 'desc')->get();
+        }
+                
+        return view('admin.assets.index')
             ->with('type', $type)
-            ->with('strategies', $strategies)
             ->with('assets', $assets);
     }
-
-    public function create()
-    {       
-        $assets = Asset::orderBy('created_at', 'desc')->paginate(15);
-        
-        return view('backoffice.assets.create')
-            ->with('assets', $assets);
-    }
-
 
     public function store(CreateAssetRequest $request)
     {

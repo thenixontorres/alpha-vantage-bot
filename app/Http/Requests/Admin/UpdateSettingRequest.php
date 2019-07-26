@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backoffice;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
  
@@ -25,8 +25,7 @@ class UpdateSettingRequest extends FormRequest
     {
         return [
             'status' => 'required',
-            'type_request' => 'required',
-            'strict_time_request' => 'required',
+            'scanners_limit' => 'integer|required',
             'alpha_vantage_key' => 'required',
             'notifications_mail' => 'bail|required'
         ];

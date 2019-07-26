@@ -32,7 +32,6 @@ class SignalController extends Controller
 
     public function update(UpdateSignalRequest $request, Signal $signal)
     {
-
         $signal->status = $request->status;
         $signal->update();
 

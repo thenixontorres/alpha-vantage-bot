@@ -13,9 +13,8 @@ class Setting extends Model
 
     protected $fillable = [
         'status',
-        'type_request',
-        'strict_time_request',
         'alpha_vantage_key',
-        'notifications_mail'
+        'notifications_mail',
+        'scanners_limit'
     ];
 }
