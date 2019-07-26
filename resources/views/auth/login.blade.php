@@ -8,6 +8,10 @@
             <div class="col-xl-12 d-lg-flex align-items-center">
                 <!--login form-->
                 <div class="login-form">
+                    <center>    
+                    <img class="pr-3 pb-4" src="{{ asset('img/turtle.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 100px;"  alt=""/>
+                    </center>
+
                     <h4 class="text-uppercase text-center mb-12" style="color: #2f3c4b;">Iniciar Sesion</h4>
                         {!! Form::open(['route'=>'auth.login']) !!}                        
                             <div class="form-group">

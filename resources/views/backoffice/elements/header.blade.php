@@ -2,9 +2,8 @@
         <div class="box-container">
            <!--brand name for responsive-->
            <a class="navbar-brand navbar-brand-responsive" href="{{ route('backoffice.index') }}">
-                    {{-- 
-                    <img class="pr-3 float-left" src="{{ asset('img/isotipo.png')}}" srcset="{{ asset('img/isotipo.png')}}" style="height: 25px;"  alt=""/>
-                    --}}
+                    
+                    <img class="pr-3 float-left" src="{{ asset('img/isotipo.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 25px;"  alt=""/>
                     <div class="float-left" style="margin-top: 4px;">
                         <div>TURTRADING</div>
                        
@@ -28,9 +27,7 @@
 
                 <!--brand name-->
                 <a class="navbar-brand navbar-hide-responsive" href="{{ route('backoffice.index') }}">
-                    {{-- 
-                    <img class="pr-3 float-left" src="{{ asset('img/isotipo.png')}}" srcset="{{ asset('img/isotipo.png')}}" style="height: 25px;"  alt=""/>
-                    --}}
+                    <img class="pr-3 float-left" src="{{ asset('img/turtle.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 25px;"  alt=""/>
                     <div class="float-left" style="margin-top: 4px;">
                         <div>TURTRADING</div>
                     </div>
@@ -44,16 +41,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-3" id="userNav" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="user-thumb">
-                                {{--               
                                 <img 
-                                    class="rounded-circle @if($auth->isVip)  vip @endif" 
-                                    src="{{ asset('storage/images/avatars/'.$auth->profile->avatar)}}" 
+                                    class="rounded-circle" 
+                                    src="{{ asset('img/turtle.png')}}" 
                                     alt=""
-                                    @if($auth->isVip) 
-                                    data-toggle="tooltip" data-placement="top" title="Cuenta VIP" 
-                                    @endif
                                 />
-                                --}}
                                 {{ Auth::user()->name }}<i class="icon-options-vertical" style="margin: 7px 0 0 4px; float: right;"> </i>
                             </div>
                         </a>
