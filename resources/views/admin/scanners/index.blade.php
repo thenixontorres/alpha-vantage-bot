@@ -29,6 +29,10 @@
 	                    @elseif($type == 'physical')
 							
 							@include('admin.scanners.physical_fields')
+						
+						@elseif($type == 'digital')
+
+							@include('admin.scanners.digital_fields')
 
 	                    @endif
 

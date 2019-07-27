@@ -1,8 +1,8 @@
 <table class="table table-bordered table-sm" id="table">
     <thead>
         <tr>
-            <th>Nombre</th>
             <th>Usuario</th> 
+            <th>Simbolo</th>
             <th>Estrategia</th>
             <th>Resumen</th>
             <th>Vincular</th>

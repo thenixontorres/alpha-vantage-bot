@@ -122,7 +122,7 @@ class ScannerRepository extends BaseRepository
 				$template = $strategy->template_array;
 
 				/*le injectamos el simbolo del activo*/
-				$template['request_data']['symbol'] = $scanner->asset->symbol;
+				$template['request_data']['symbol'] = $scanner->merged_symbols;
 
 				/*lo guardamos en en los settings del scanner*/
 				$settings[$strategy->code] = $template;

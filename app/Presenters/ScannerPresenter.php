@@ -54,7 +54,7 @@ trait ScannerPresenter
 		{
 			return $this->asset->symbol;
 			
-		}elseif($this->scanner_type == 'physical')
+		}else
 		{
 			return $this->asset->symbol.$this->assetTo->symbol;
 		}
