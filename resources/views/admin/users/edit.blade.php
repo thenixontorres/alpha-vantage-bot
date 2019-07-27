@@ -4,10 +4,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center pt-5" >
+    <div class="row justify-content-center pb-4" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> {{$user->name}} </div>
+                <div class="card-header border-0">
+                  <div class="custom-title-wrap bar-info">
+                      <div class="custom-title">Editar {{$user->name}}</div>
+                  </div>
+                </div>
                 <div class="card-body">
                   {!! Form::model($user, ['route' => ['admin.users.update', $user], 'method' => 'patch']) !!}
                       
@@ -16,8 +20,8 @@
                     <div class="form-group row mb-0">
                       <div class="col-md-12">
                           <center>  
-                              <a class="btn btn-danger" href="{{ route('admin.users.index') }}">Volver</a>
-                              <button type="submit" class="btn btn-primary">
+                              <a class="btn btn-pill btn-danger" href="{{ route('admin.users.index') }}">Volver</a>
+                              <button type="submit" class="btn btn-pill btn-primary">
                                   Actualizar
                               </button>
                           </center>

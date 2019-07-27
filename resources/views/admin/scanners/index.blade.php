@@ -11,10 +11,14 @@
 <div class="container">
 	
 	@if($type != 'all')
-	<div class="row justify-content-center">
+	<div class="row justify-content-center pb-4">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Registrar escaner </div>
+				<div class="card-header border-0">
+                  <div class="custom-title-wrap bar-info">
+                      <div class="custom-title">Registrar escaner</div>
+                  </div>
+                </div>
                 <div class="card-body">
 					{!! Form::open(['route'=>'admin.scanners.store']) !!}
 
@@ -33,7 +37,7 @@
 						<div class="form-group row mb-0">
 		                    <div class="col-md-12">
 		                          <center>  
-		                              <button type="submit" class="btn btn-primary">
+		                              <button type="submit" class="btn btn-pill btn-primary">
 		                                  Registrar
 		                              </button>
 		                          </center>
@@ -47,10 +51,14 @@
     </div>
 	@endif
 
-    <div class="row justify-content-center pt-5" >
+    <div class="row justify-content-center pb-4">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Lista de escaners </div>
+				<div class="card-header border-0">
+                  <div class="custom-title-wrap bar-info">
+                      <div class="custom-title">Lista de escaners</div>
+                  </div>
+                </div>
                 <div class="card-body">
                     @include('admin.scanners.table')            
                 </div>

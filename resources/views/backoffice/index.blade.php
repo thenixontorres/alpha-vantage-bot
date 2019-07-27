@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center pb-4">
 
-        <div class="col-xl-6 col-md-6">
+        <div class="col-xl-4 col-md-4">
             <div class="card card-shadow mb-4">
                 <div class="card-body">
 
@@ -38,10 +38,13 @@
                 </div>
             </div>
         </div>
-		
-		<div class="col-xl-6 col-md-6">
+		<div class="col-xl-8 col-md-8">
 			<div class="card">
-                <div class="card-header"> Mi cuenta </div>
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-info">
+                        <div class="custom-title">Mi cuenta</div>
+                    </div>
+                </div>                
                 <div class="card-body">
                   {!! Form::model(Auth::user(), ['route' => ['backoffice.users.update', Auth::user()], 'method' => 'patch']) !!}
                       
@@ -50,7 +53,7 @@
                     <div class="form-group row mb-0">
                       <div class="col-md-12">
                           <center>  
-                              <button type="submit" class="btn btn-primary">
+                              <button type="submit" class="btn btn-pill btn-primary">
                                   Actualizar
                               </button>
                           </center>
@@ -60,8 +63,9 @@
                 </div>
             </div>
 		</div>
-
+       
     </div>
 
 </div>
 @endsection
+

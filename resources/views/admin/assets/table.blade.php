@@ -36,7 +36,7 @@
             </td>
             <td>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-pill btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-gear"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

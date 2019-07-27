@@ -49,7 +49,7 @@
 
               {!! Form::hidden('status', 'success') !!}
               
-              <button class="btn btn-success"><i class="fa fa-check"></i></button>
+              <button class="btn btn-pill btn-success"><i class="fa fa-check"></i></button>
 
             {!! Form::close() !!}
 
@@ -57,7 +57,7 @@
 
               {!! Form::hidden('status', 'failed') !!}
               
-              <button class="btn btn-danger"><i class="fa fa-close"></i></button>
+              <button class="btn btn-pill btn-danger"><i class="fa fa-close"></i></button>
               
             {!! Form::close() !!}
 

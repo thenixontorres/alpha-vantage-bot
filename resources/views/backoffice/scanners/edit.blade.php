@@ -6,13 +6,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4> {{$scanner->merged_symbols}} </h4>
-        </div>
-        <div class="col-md-12 pt-4">
 
                 <div class="card">
-                    <div class="card-header">
-                        General 
+                    <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-info">
+                            <div class="custom-title">General</div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -29,7 +28,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-12">
                                             <center>  
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-pill btn-primary">
                                                     Actualizar
                                                 </button>
                                             </center>
@@ -47,9 +46,15 @@
             <div class="col-md-12 pt-4">
 
                 <div class="card">
-                    <div class="card-header">
-                        Estrategia: <span class="badge badge-info"> {{$strategy->title}}</span> 
+                     <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-info">
+                            <div class="custom-title">   
+                                Estrategia: 
+                                <span class="badge badge-info"> {{$strategy->title}}</span> 
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="card-body">
                         <div class="row">
     	                  	<div class="col-md-12">
@@ -65,7 +70,7 @@
                                     <div class="form-group row mb-0">
                                         <div class="col-md-12">
                                             <center>  
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-pill btn-primary">
                                                     Actualizar
                                                 </button>
                                             </center>

@@ -6,30 +6,32 @@
 <div class="container">
     <div class="row justify-content-center" >
         <div class="col-md-12">
-            <h4> {{$scanner->merged_symbols}} :
-            
-                @foreach($scanner->strategies as $strategy)
-                    
-                    <span class="badge badge-info">   {{$strategy->title}}</span> 
-                        
-                @endforeach
-
-            </h4>
-        </div>
-
-        <div class="col-md-12 pt-5">
             <div class="card">
-                <div class="card-header"> Escaneando... </div>
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-info">
+                        <div class="custom-title">
+                            <h4> {{$scanner->merged_symbols}} :
+            
+                                @foreach($scanner->strategies as $strategy)
+                                    
+                                    <span class="badge badge-info">   {{$strategy->title}}</span> 
+                                        
+                                @endforeach
+
+                            </h4>
+                        </div>
+                    </div>
+                </div>                
                 <div class="card-body">
                     <div class="row">
                         @foreach($scanner->strategies as $strategy)
-    	                    <div class="col-md-{{$scanner->count_cols}} pt-5">
+    	                    <div class="col-md-{{$scanner->count_cols}}">
                                 @include('backoffice.scanners.alerts_table')
     						</div>
                         @endforeach
 	                    <div class="col-md-12">
 	                        <center>  
-	                            <a class="btn btn-danger" href="{{ route('backoffice.index') }}">Volver</a>
+	                            <a class="btn btn-pill btn-danger" href="{{ route('backoffice.index') }}">Volver</a>
 	                        </center>
 	                    </div>
                     </div>

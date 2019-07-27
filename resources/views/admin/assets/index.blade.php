@@ -6,30 +6,38 @@
 <div class="container">
     
     @if($type == 'stock_market')
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header"> Registrar activo </div>
-                <div class="card-body">
-                    {!! Form::open(['route'=>'admin.assets.store', 'class'=>'form-inline']) !!}
-                    <div class="form-group col-md-10">
-                        {{Form::text('keywords', null, ['class'=> 'form-control typeahead', 'placeholder'=>'Nombre del activo', 'style'=>'width:100%;', 'id'=>'keywords', 'required', 'autocomplete'=>'off'])}}
-                        {{Form::hidden('type', 'stock_market')}}
+      <div class="row justify-content-center pb-4">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-info">
+                        <div class="custom-title">Registrar activo</div>
                     </div>
-                    <div class="form-group col-md-2">
-                        <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-plus"></i></button>
-                    </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
+                  <div class="card-body">
+                      {!! Form::open(['route'=>'admin.assets.store', 'class'=>'form-inline']) !!}
+                      <div class="form-group col-md-10">
+                          {{Form::text('keywords', null, ['class'=> 'form-control typeahead', 'placeholder'=>'Nombre del activo', 'style'=>'width:100%;', 'id'=>'keywords', 'required', 'autocomplete'=>'off'])}}
+                          {{Form::hidden('type', 'stock_market')}}
+                      </div>
+                      <div class="form-group col-md-2">
+                          <button type="submit" class="btn btn-pill btn-primary mb-2"><i class="fa fa-plus"></i></button>
+                      </div>
+                      {!! Form::close() !!}
+                  </div>
+              </div>
+          </div>
+      </div>
     @endif
 
-    <div class="row justify-content-center pt-5" >
+    <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Lista de activos </div>
+                <div class="card-header border-0">
+                  <div class="custom-title-wrap bar-info">
+                      <div class="custom-title">Lista de activos</div>
+                  </div>
+                </div>
                 <div class="card-body">
                     @include('admin.assets.table')                    
                 </div>

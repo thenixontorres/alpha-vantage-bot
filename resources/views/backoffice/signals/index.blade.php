@@ -7,7 +7,11 @@
     <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Lista de alertas </div>
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-info">
+                        <div class="custom-title">Mis alertas</div>
+                    </div>
+                </div>                
                 <div class="card-body">
                     @include('backoffice.signals.table')                    
                 </div>

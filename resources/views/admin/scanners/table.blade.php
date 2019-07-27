@@ -38,7 +38,7 @@
             </td>
             <td> 
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-pill btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bar-chart"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -59,7 +59,7 @@
             </td>
             <td> 
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-pill btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-gear"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -79,23 +79,23 @@
 
                         @if($scanner->status == 'on')
                             {{ Form::hidden('status', 'off') }}
-                            <button class="btn btn-primary"><i class="fa fa-pause"></i></button>
+                            <button class="btn btn-pill btn-primary"><i class="fa fa-play"></i></button>
                             
                         @else
                             {{ Form::hidden('status', 'on') }}
-                            <button class="btn btn-danger"><i class="fa fa-pause"></i></button>
+                            <button class="btn btn-pill btn-danger"><i class="fa fa-pause"></i></button>
                         @endif
                         
                     {!! Form::close() !!}
                 @else
-                    <button class="btn btn-secondary"><i class="fa fa-pause"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-pause"></i></button>
                 @endif
             </td>
             <td> 
                 @if(!empty($scanner->strategies->first()))
-                    <a href="{{route('admin.scanners.show', $scanner)}}" class="btn btn-primary"><i class="fa fa-play"></i></a>
+                    <a href="{{route('admin.scanners.show', $scanner)}}" class="btn btn-pill btn-primary"><i class="fa fa-play"></i></a>
                 @else
-                    <button class="btn btn-secondary"><i class="fa fa-play"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-play"></i></button>
                 @endif
             </td>
         </tr>
