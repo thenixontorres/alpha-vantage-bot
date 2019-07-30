@@ -3,7 +3,60 @@
 @section('content')
 <div class="container">
 
-    <div class="row justify-content-center pb-4">
+    <div class="row pb-4">
+        
+        <div class="col-xl-12 col-md-12">
+            <div class="card card-shadow mb-4 pt-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="media d-flex align-items-center  mb-4">
+                                <div class="mr-4 rounded-circle bg-warning sr-icon-box bubble-shadow-small">
+                                    <i class="fa fa-bar-chart"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="text-uppercase mb-0 weight500">{{$count_strategies}}</h4>
+                                    <span class="text-muted">Estrategias</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="media d-flex align-items-center  mb-4">
+                                <div class="mr-4 rounded-circle bg-purple sr-icon-box bubble-shadow-small">
+                                    <i class="fa fa-building"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="text-uppercase mb-0 weight500">{{$count_stock}}</h4>
+                                    <span class="text-muted">Acciones</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="media d-flex align-items-center  mb-4">
+                                <div class="mr-4 rounded-circle bg-danger sr-icon-box bubble-shadow-small">
+                                    <i class="fa fa-money"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="text-uppercase mb-0 weight500">{{$count_physical}}</h4>
+                                    <span class="text-muted">Divisas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="media d-flex align-items-center  mb-4">
+                                <div class="mr-4 rounded-circle bg-purple-light sr-icon-box bubble-shadow-small">
+                                    <i class="fa fa-bitcoin"></i>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="text-uppercase mb-0 weight500">{{$count_digital}}</h4>
+                                    <span class="text-muted">Criptomonedas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="col-xl-4 col-md-4">
             <div class="card card-shadow mb-4">
@@ -38,6 +91,7 @@
                 </div>
             </div>
         </div>
+
 		<div class="col-xl-8 col-md-8">
 			<div class="card">
                 <div class="card-header border-0">

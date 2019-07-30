@@ -93,7 +93,7 @@
                     if(data.general_alert)
                     {
                         console.log('signal found!');
-                        var symbol = '{{$scanner->asset->symbol}}';
+                        var symbol = '{{$scanner->merged_symbols}}';
                         /*notificacion push*/
                         Push.create("Señal en el activo "+symbol, { 
                             body: 'Se ha encontrado una señal en el activo '+ symbol, 

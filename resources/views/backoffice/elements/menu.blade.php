@@ -22,7 +22,7 @@
 
                             <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['physical']) }}">Forex</a>
 
-                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['digital']) }}">Criptos</a>
+                            <a class="dropdown-item" href="#">Criptos</a>
                         </div>
                     </li>
 
@@ -36,7 +36,7 @@
 
                             <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['stock_market']) }}">Acciones</a>
                             <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['digital']) }}">Criptos</a>
+                            <a class="dropdown-item" href="#">Criptos</a>
                         </div>
                     </li>
 
@@ -54,7 +54,7 @@
 
                             <a class="dropdown-item" href="{{ route('admin.scanners.index', ['physical']) }}">Forex</a>
 
-                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['digital']) }}">Criptos</a>
+                            <a class="dropdown-item" href="#">Criptos</a>
                         </div>
                     </li>
 
@@ -68,7 +68,7 @@
 
                             <a class="dropdown-item" href="{{ route('admin.signals.index', ['stock_market']) }}">Acciones</a>
                             <a class="dropdown-item" href="{{ route('admin.signals.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['digital']) }}">Criptos</a>
+                            <a class="dropdown-item" href="#">Criptos</a>
                         </div>
                     </li>
 
@@ -82,7 +82,7 @@
 
                             <a class="dropdown-item" href="{{ route('admin.assets.index', ['stock_market']) }}">Acciones</a>
                             <a class="dropdown-item" href="{{ route('admin.assets.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['digital']) }}">Criptos</a>
+                            <a class="dropdown-item" href="#">Criptos</a>
                         </div>
                     </li>
                     

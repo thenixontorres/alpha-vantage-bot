@@ -54,8 +54,7 @@ trait ScannerPresenter
 		{
 			return $this->asset->symbol;
 			
-		}else
-		{
+		}else{
 			return $this->asset->symbol.$this->assetTo->symbol;
 		}
 	}

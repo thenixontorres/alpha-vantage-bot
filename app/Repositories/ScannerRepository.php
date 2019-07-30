@@ -249,23 +249,34 @@ class ScannerRepository extends BaseRepository
 		$slow_request = $scanner->settings_array['MA_SINGLE']['request_data'];
 		
 		/* Construimos la configuracion indicador técnico rápido  (PRECIO) $fast */
-		if($scanner->scanner_type == 'stock_market')
-		{
-			$fast_request = [
-				'function' => 'TIME_SERIES_INTRADAY',
-				'symbol' => $slow_request['symbol'],
-				'interval' => $slow_request['interval'],
-			];
+		switch ($scanner->scanner_type) {
+			
+			case 'stock_market':
+				$fast_request = [
+					'function' => 'TIME_SERIES_INTRADAY',
+					'symbol' => $slow_request['symbol'],
+					'interval' => $slow_request['interval'],
+				];
+				break;
 
-		}else
-		{
-			$fast_request = [
-				'function' => 'FX_INTRADAY',
-				'from_symbol' => $scanner->asset->symbol,
-				'to_symbol' => $scanner->assetTo->symbol,
-				'interval' => $slow_request['interval'],
-			];
-		}	
+			case 'physical':
+				$fast_request = [
+					'function' => 'FX_INTRADAY',
+					'from_symbol' => $scanner->asset->symbol,
+					'to_symbol' => $scanner->assetTo->symbol,
+					'interval' => $slow_request['interval'],
+				];
+				break;
+			
+			default:
+				$fast_request = [
+					'function' => 'FX_INTRADAY',
+					'from_symbol' => $scanner->asset->symbol,
+					'to_symbol' => $scanner->assetTo->symbol,
+					'interval' => $slow_request['interval'],
+				];
+				break;
+		}
 
 		/* consultamos la api para obtener la informacion necesaria */
 		$slow = AlphaVantage::getDirect($slow_request);
@@ -412,9 +423,9 @@ class ScannerRepository extends BaseRepository
 		$slow_prevous = array_shift($slow)[$slow_ma];
 
 		/* obtenemos las ultimos dos valores de MA rapida*/
-		$fast_last = array_shift($slow)[$slow_ma];
+		$fast_last = array_shift($fast)[$fast_ma];
 
-		$fast_prevous = array_shift($slow)[$slow_ma];
+		$fast_prevous = array_shift($fast)[$fast_ma];
 
 		//dd($slow_last, $slow_prevous ,$fast_last, $fast_prevous);
 

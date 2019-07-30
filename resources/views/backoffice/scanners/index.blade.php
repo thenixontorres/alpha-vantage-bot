@@ -29,6 +29,10 @@
 	                    @elseif($type == 'physical')
 							
 							@include('backoffice.scanners.physical_fields')
+	                    
+	                    @elseif($type == 'digital')
+							
+							@include('backoffice.scanners.digital_fields')
 
 	                    @endif
 

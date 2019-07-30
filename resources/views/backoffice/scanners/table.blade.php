@@ -1,7 +1,7 @@
 <table class="table table-bordered table-sm" id="table">
     <thead>
         <tr>
-            <th>Nombre</th>
+            <th>Simbolo</th>
             {{-- <th>Símbolo</th> --}}
             <th>Estrategia</th>
             <th>Resumen</th>
