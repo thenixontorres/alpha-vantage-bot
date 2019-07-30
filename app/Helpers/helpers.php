@@ -1,6 +1,7 @@
 <?php
  
 use App\Models\Setting;
+use App\Models\Key;
 
 function getSettings()
 {   
@@ -46,4 +47,44 @@ function getStrictTimeRequestMs()
         }
 
         return 3600000;
+}
+
+function getApiKey(){
+
+    if (Schema::hasTable('keys')) 
+    {
+        $key = Key::where('is_active', true)->first();
+
+        if(!empty($key))
+        {
+            return $key->key;
+        }    
+    }
+
+    return null;
+}
+
+function updateApiKey()
+{
+    if (Schema::hasTable('keys')) 
+    {
+        $active_key = Key::where('is_active', true)->first();
+
+        $inactive_key = Key::where('is_active', false)->inRandomOrder()->first();
+
+        if(!empty($inactive_key))
+        {
+            $active_key->is_active = false;
+
+            $active_key->update();
+
+            $inactive_key->is_active = true;
+
+            $inactive_key->update();
+
+            return true;
+        }    
+    }
+
+    return false;
 }

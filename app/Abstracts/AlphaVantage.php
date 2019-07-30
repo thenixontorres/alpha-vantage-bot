@@ -11,8 +11,15 @@ abstract class AlphaVantage
  		
  		$data['function'] = $function;
  		
- 		$data['apikey'] = getSetting('alpha_vantage_key');
- 		
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
+ 		$data['apikey'] = $apikey;  
+
  		$data = http_build_query($data);
  		 		
  		$ch = curl_init($api.$data);
@@ -21,6 +28,8 @@ abstract class AlphaVantage
 		$response = curl_exec($ch);
 		curl_close($ch);
 		
+		dd($response);
+
 		if(!$response) 
 		{
 			return false;
@@ -41,9 +50,16 @@ abstract class AlphaVantage
  	{
  		$api = env('ALPHA_VANTAGE_API_URL');
 
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
  		$data = [
  			'function' => 'TIME_SERIES_INTRADAY',
- 			'apikey' => getSetting('alpha_vantage_key'),
+ 			'apikey' => $apikey,
  			'symbol' => $symbol, 
  			'interval' => '1min'
  		];
@@ -78,9 +94,16 @@ abstract class AlphaVantage
  	{
  		$api = env('ALPHA_VANTAGE_API_URL');
 
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
  		$data = [
  			'function' => 'CURRENCY_EXCHANGE_RATE',
- 			'apikey' => getSetting('alpha_vantage_key'),
+ 			'apikey' => $apikey,
  			'from_currency' => $from_currency, 
  			'to_currency' => $to_currency
  		];
@@ -117,9 +140,16 @@ abstract class AlphaVantage
  	{
  		$api = env('ALPHA_VANTAGE_API_URL');
 
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
  		$data = [
  			'function' => 'TIME_SERIES_INTRADAY',
- 			'apikey' => getSetting('alpha_vantage_key'),
+ 			'apikey' => $apikey,
  			'symbol' => $symbol, 
  			'interval' => $period
  		];
@@ -155,7 +185,14 @@ abstract class AlphaVantage
  	{
  		$api = env('ALPHA_VANTAGE_API_URL');
  		
- 		$data['apikey'] = getSetting('alpha_vantage_key');
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
+ 		$data['apikey'] = $apikey;
  		
  		$data = http_build_query($data);
  		 		
@@ -180,10 +217,5 @@ abstract class AlphaVantage
 
 			return $response;
 		}
- 	}
-
- 	static function getPrice($symbol, $type){
-
- 		
  	}
 }

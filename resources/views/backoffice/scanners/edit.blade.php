@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 pb-4">
 
                 <div class="card">
                     <div class="card-header border-0">
@@ -43,10 +43,10 @@
 
             </div>
         @foreach($scanner->strategies as $strategy)
-            <div class="col-md-12 pt-4">
+            <div class="col-md-12 pb-4">
 
                 <div class="card">
-                     <div class="card-header border-0">
+                    <div class="card-header border-0">
                         <div class="custom-title-wrap bar-info">
                             <div class="custom-title">   
                                 Estrategia: 

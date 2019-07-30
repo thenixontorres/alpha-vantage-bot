@@ -8,11 +8,13 @@
         <div class="col-md-12">
             <h4> {{$scanner->merged_symbols}} </h4>
         </div>
-        <div class="col-md-12 pt-4">
+        <div class="col-md-12 pb-4">
 
                 <div class="card">
-                    <div class="card-header">
-                        General 
+                    <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-info">
+                            <div class="custom-title">General</div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -44,11 +46,16 @@
 
             </div>
         @foreach($scanner->strategies as $strategy)
-            <div class="col-md-12 pt-4">
+            <div class="col-md-12 pb-4">
 
                 <div class="card">
-                    <div class="card-header">
-                        Estrategia: <span class="badge badge-info"> {{$strategy->title}}</span> 
+                    <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-info">
+                            <div class="custom-title">   
+                                Estrategia: 
+                                <span class="badge badge-info"> {{$strategy->title}}</span> 
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">

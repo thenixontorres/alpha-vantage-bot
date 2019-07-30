@@ -16,13 +16,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index') }}">Todos</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index') }}"> <i class="fa fa-line-chart"></i> Todos</a>
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['stock_market']) }}">Acciones</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['stock_market']) }}"> <i class="fa fa-building"></i> Acciones</a>
 
-                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['physical']) }}">Forex</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.scanners.index', ['physical']) }}"> <i class="fa fa-money"></i> Forex</a>
 
-                            <a class="dropdown-item" href="#">Criptos</a>
+                            <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
 
@@ -32,11 +32,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.signals.index') }}">Todas</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.signals.index') }}"> <i class="fa fa-warning"></i> Todas</a>
 
-                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['stock_market']) }}">Acciones</a>
-                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="#">Criptos</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['stock_market']) }}">  <i class="fa fa-building"></i> Acciones</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['physical']) }}"> <i class="fa fa-money"></i> Forex</a>
+                            <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
 
@@ -48,13 +48,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('admin.scanners.index') }}">Todos</a>
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index') }}"> <i class="fa fa-line-chart"></i> Todos</a>
                             
-                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['stock_market']) }}">Acciones</a>
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['stock_market']) }}"> <i class="fa fa-building"></i> Acciones</a>
 
-                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['physical']) }}">Forex</a>
+                            <a class="dropdown-item" href="{{ route('admin.scanners.index', ['physical']) }}"> <i class="fa fa-money"></i> Forex</a>
 
-                            <a class="dropdown-item" href="#">Criptos</a>
+                            <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
 
@@ -64,11 +64,12 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('admin.signals.index') }}">Todas</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index') }}"><i class="fa fa-warning"></i> Todas</a>
 
-                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['stock_market']) }}">Acciones</a>
-                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="#">Criptos</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['stock_market']) }}"><i class="fa fa-building"></i>  Acciones</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', ['physical']) }}"><i class="fa fa-money"></i> Forex</a>
+
+                            <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
 
@@ -78,11 +79,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('admin.assets.index') }}">Todos</a>
+                            <a class="dropdown-item" href="{{ route('admin.assets.index') }}"> <i class="fa fa-area-chart"></i>  Todos</a>
 
-                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['stock_market']) }}">Acciones</a>
-                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['physical']) }}">Forex</a>
-                            <a class="dropdown-item" href="#">Criptos</a>
+                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['stock_market']) }}"><i class="fa fa-building"></i> Acciones</a>
+                            <a class="dropdown-item" href="{{ route('admin.assets.index', ['physical']) }}"><i class="fa fa-money"></i>  Forex</a>
+                            <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
                     
