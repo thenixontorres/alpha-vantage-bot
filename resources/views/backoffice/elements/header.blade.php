@@ -50,21 +50,24 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userNav">
-                            <a class="dropdown-item" href="{{ route('backoffice.index') }}">Inicio</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.index') }}"><i class="fa fa-home"></i> Inicio</a>
                             
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.users.index') }}">Mi cuenta</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.users.index') }}"><i class="fa fa-user"></i> Mi cuenta</a>
                             
                             @if(Auth::user()->type == 'admin')
                                 
-                                <a class="dropdown-item" href="{{ route('admin.settings.index') }}">Configuraciones</a>
+                                <a class="dropdown-item" href="{{ route('admin.settings.index') }}"> <i class="fa fa-gear"></i> Configuraciones</a>
+
+                                <a class="dropdown-item" href="{{ route('admin.keys.index') }}"> <i class="fa fa-key"></i> Llaves</a>
+
 
                             @endif
 
                             <div class="dropdown-divider"></div>
                             
                             
-                            <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="#">Desconectarme</a>
+                            <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="#"> <i class="fa fa-power-off"></i> Desconectarme</a>
                             <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                             </form>

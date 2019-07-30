@@ -7,8 +7,11 @@
     <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"> Configuración del sistema </div>
-                <div class="card-body">
+                    <div class="card-header border-0">
+                        <div class="custom-title-wrap bar-info">
+                            <div class="custom-title">Configuraciones</div>
+                        </div>
+                    </div>                <div class="card-body">
                   {!! Form::model($setting, ['route' => ['admin.settings.update', $setting], 'method' => 'patch']) !!}
                       
                     @include('admin.settings.fields')

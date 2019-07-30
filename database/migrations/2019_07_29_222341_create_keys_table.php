@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSettingsTable extends Migration
+class CreateKeysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('keys', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('status', ['on', 'off'])->default('on');
-            //$table->string('alpha_vantage_key');
-            $table->string('notifications_mail');
-            $table->string('scanners_limit')->default(3);
+            $table->string('key');
+            $table->string('email');
+            $table->string('name');
+            $table->boolean('is_active')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('keys');
     }
 }

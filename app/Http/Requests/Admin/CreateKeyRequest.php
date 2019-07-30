@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Backoffice;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
  
-class UpdateSettingRequest extends FormRequest
+class CreateKeyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,9 @@ class UpdateSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'required',
-            'type_request' => 'required',
-            'strict_time_request' => 'required',
-            'alpha_vantage_key' => 'required',
-            'notifications_mail' => 'bail|required'
+            'key' => 'required',
+            'email' => 'required',
+            'name' => 'required',
         ];
     }
 }

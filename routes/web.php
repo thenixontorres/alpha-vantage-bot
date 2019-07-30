@@ -49,6 +49,8 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 /*BACKOFFICE ROUTES*/
 Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','admin'])->group(function () {
 
+	Route::resource('keys', 'KeyController');
+
 	Route::resource('users', 'UserController');
 
 	Route::resource('strategies', 'StrategyController')->only(['index','update']);

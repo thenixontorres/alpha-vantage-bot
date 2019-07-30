@@ -14,7 +14,6 @@ class SettingsTableSeeder extends Seeder
         DB::table('settings')->insert([
             'status'         => 'on',
             'scanners_limit' => '3',
-            'alpha_vantage_key'  => 'MJRQQRSU4P91WRCN',
             'notifications_mail' => 'nixontorres26@gmail.com'
         ]);
     }

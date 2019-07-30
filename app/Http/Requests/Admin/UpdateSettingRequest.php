@@ -26,7 +26,6 @@ class UpdateSettingRequest extends FormRequest
         return [
             'status' => 'required',
             'scanners_limit' => 'integer|required',
-            'alpha_vantage_key' => 'required',
             'notifications_mail' => 'bail|required'
         ];
     }
