@@ -77,8 +77,6 @@
             {
                 console.log('setting...');
 
-                {{-- console.log(data); --}}
-
                 /*Si se ejecuto la estrategia correctamente continuamos*/
                 if(data.success)
                 {
@@ -145,19 +143,19 @@
                 switch (code) {
                         
                     case 'MA_SINGLE':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type}</td><td>${signal.price}</td><td>${signal.ma}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.price}</td><td>${signal.ma}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'MA_DOUBLE':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type}</td><td>${signal.slow_ma}</td><td>${signal.fast_ma}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.slow_ma}</td><td>${signal.fast_ma}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'BBANDS':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type}</td><td>${signal.upper}</td><td>${signal.middle}</td><td>${signal.lower}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.upper}</td><td>${signal.middle}</td><td>${signal.lower}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'RSI':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type}</td><td>${signal.rsi}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.rsi}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     default:
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type}</td><td>${signal.k}</td><td>${signal.d}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.k}</td><td>${signal.d}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                 }
 

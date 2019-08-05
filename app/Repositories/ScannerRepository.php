@@ -224,6 +224,22 @@ class ScannerRepository extends BaseRepository
 			}
 		}
 
+		/*verificamos la alerta anterior*/
+		if ($general_alert) 
+		{
+			if (!empty($scanner->signals->last())) 
+			{
+				$previous = $scanner->signals->last();
+				
+				$values = array_values($response);
+
+				if ($previous->just_type == $values[0]['type']) 
+				{
+					$general_alert = false;
+				}
+			}
+		}
+
 		/*si hay una alerta la registramos */
 		if ($general_alert) 
 		{
@@ -287,7 +303,8 @@ class ScannerRepository extends BaseRepository
 		{
 			return [
 				'alert' => false,
-				'type' => '<span class="badge badge-danger">ERROR</span>',
+				'type_html' => '<span class="badge badge-danger">ERROR</span>',
+				'type' => 'ERROR',
 				'symbol' => $scanner->merged_symbols,
 				'ma' => '---',
 				'price' => '---',
@@ -331,8 +348,11 @@ class ScannerRepository extends BaseRepository
 		/*Respuesta por default*/
 		$data_signal = [
 			'alert' => false,
-			'type' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type' => 'NEUTRO',
+			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
 			'symbol' => $scanner->merged_symbols,
+			'prev_ma' => $slow_prevous,
+			'prev_price' => $fast_prevous,
 			'ma' => $slow_last,
 			'price' => $fast_last,
 			'time' => now()->format('d-m-Y H:i') 
@@ -342,14 +362,16 @@ class ScannerRepository extends BaseRepository
 		if ($a && $b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type'] = 'BUY';
 		}
 
 		/* Cuando el valor del precio actual $fast  cruza de arriba hacia abajo ema $slow entonces se da una señal de venta. */
 		if (!$a && !$b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">SELL</span>';
+			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+			$data_signal['type'] = 'SELL';
 		}
 
 		return  $data_signal;
@@ -393,7 +415,8 @@ class ScannerRepository extends BaseRepository
 		{
 			return [
 				'alert' => false,
-				'type' => '<span class="badge badge-danger">ERROR</span>',
+				'type' => 'ERROR',
+				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'symbol' => $scanner->merged_symbols,
 				'slow_ma' => '---',
 				'fast_ma' => '---',
@@ -440,8 +463,11 @@ class ScannerRepository extends BaseRepository
 		/*Respuesta por default*/
 		$data_signal = [
 			'alert' => false,
-			'type' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type' => 'NEUTRO',
+			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
 			'symbol' => $slow_request['symbol'],
+			'prev_slow_ma' => $slow_prevous,
+			'prev_fast_ma' => $fast_prevous,
 			'slow_ma' => $slow_last,
 			'fast_ma' => $fast_last,
 			'price' => $price,
@@ -452,14 +478,16 @@ class ScannerRepository extends BaseRepository
 		if ($a && $b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type'] = 'BUY';
 		}
 
 		/* Cuando el indicador técnico rápido cruza de arriba hacia abajo al lento entonces se da una señal de venta. */
 		if (!$a && !$b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">SELL</span>';
+			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+			$data_signal['type'] = 'SELL';
 		}
 
 		return  $data_signal;
@@ -486,7 +514,8 @@ class ScannerRepository extends BaseRepository
 		{
 			return [
 				'alert' => false,
-				'type' => '<span class="badge badge-danger">ERROR</span>',
+				'type_html' => '<span class="badge badge-danger">ERROR</span>',
+				'type' => 'ERROR',
 				'symbol' => $scanner->merged_symbols,
 				'k' => '---',
 				'd' => '---',
@@ -525,8 +554,11 @@ class ScannerRepository extends BaseRepository
 		/*Respuesta por default*/
 		$data_signal = [
 			'alert' => false,
-			'type' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type' => 'NEUTRO',
 			'symbol' => $scanner->merged_symbols,
+			'prev_k' => $previous['SlowK'],
+			'prev_d' => $previous['SlowD'],
 			'k' => $last['SlowK'],
 			'd' => $last['SlowD'],
 			'price' => $price,
@@ -537,14 +569,16 @@ class ScannerRepository extends BaseRepository
 		if ($a && $b && $c) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type'] = 'BUY';
 		}
 
 		/* Cuando el indicador técnico rápido K cruza de arriba hacia abajo al lento D entonces y ambos estaban sobre 80 se da una señal de venta. */
 		if ($d && !$a && !$b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">SELL</span>';
+			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+			$data_signal['type'] = 'SELL';
 		}
 
 		return  $data_signal;
@@ -571,7 +605,8 @@ class ScannerRepository extends BaseRepository
 		{
 			return [
 				'alert' => false,
-				'type' => '<span class="badge badge-danger">ERROR</span>',
+				'type' => 'ERROR',
+				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'symbol' => $scanner->merged_symbols,
 				'rsi' => '---',
 				'price' => '---',
@@ -609,8 +644,10 @@ class ScannerRepository extends BaseRepository
 		/*Respuesta por default*/
 		$data_signal = [
 			'alert' => false,
-			'type' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type' => 'NEUTRO',
+			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
 			'symbol' => $scanner->merged_symbols,
+			'prev_rsi' => $previous['RSI'],
 			'rsi' => $last['RSI'],
 			'price' => $price,
 			'time' => now()->format('d-m-Y H:i') 
@@ -620,14 +657,16 @@ class ScannerRepository extends BaseRepository
 		if ($a && $b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type'] = 'BUY';
 		}
 
 		/* Cuando el rsi estaba sobre 70 y baja entonces es senal de venta  */
 		if ($c && $d) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">SELL</span>';
+			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+			$data_signal['type'] = 'SELL';
 		}
 
 		return  $data_signal;
@@ -668,7 +707,8 @@ class ScannerRepository extends BaseRepository
 		{
 			return [
 				'alert' => false,
-				'type' => '<span class="badge badge-danger">ERROR</span>',
+				'type' => 'ERROR',
+				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'symbol' => $scanner->merged_symbols,
 				'upper' => '---',
 				'middle' => '---',
@@ -704,7 +744,8 @@ class ScannerRepository extends BaseRepository
 		/*Respuesta por default*/
 		$data_signal = [
 			'alert' => false,
-			'type' => '<span class="badge badge-secondary">NEUTRO</span>',
+			'type' => 'NEUTRO',
+			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
 			'symbol' => $scanner->merged_symbols,
 			'upper' => $bbands_last['Real Upper Band'],
 			'middle' => $bbands_last['Real Middle Band'],
@@ -717,14 +758,16 @@ class ScannerRepository extends BaseRepository
 		if ($a) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">SELL</span>';
+			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+			$data_signal['type'] = 'SELL';
 		}
 
 		/* Cuando el precio estaba sobreventa es senal de compra  */
 		if ($b) 
 		{
 			$data_signal['alert'] = true;
-			$data_signal['type'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+			$data_signal['type'] = 'BUY';
 		}
 
 		return  $data_signal;

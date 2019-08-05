@@ -16,6 +16,13 @@ trait SignalPresenter
 	{
 		$list = array_values($this->data_array);
 
+		return $list[0]['type_html'];
+	}
+
+	public function getJustTypeAttribute()
+	{
+		$list = array_values($this->data_array);
+
 		return $list[0]['type'];
 	}
 
