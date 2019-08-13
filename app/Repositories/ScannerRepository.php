@@ -140,6 +140,22 @@ class ScannerRepository extends BaseRepository
 		];
 	}
 
+	public function updateAssetSymbol(Scanner $scanner)
+	{
+		$settings_array = $scanner->settings_array;
+
+		foreach ($settings_array as $key => $value) {
+			
+			$settings_array[$key]['request_data']['symbol'] = $scanner->merged_symbols;
+		}
+
+		$scanner->settings = serialize($settings_array);
+
+		$scanner->update();
+
+		return true;
+	}
+
 	/*desvincula estrategias a un scanner*/
 	public function detachStrategy(Scanner $scanner, $strategies_id)
 	{
@@ -306,6 +322,8 @@ class ScannerRepository extends BaseRepository
 				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'type' => 'ERROR',
 				'symbol' => $scanner->merged_symbols,
+				'prev_ma' => '---',
+				'prev_price' => '---',
 				'ma' => '---',
 				'price' => '---',
 				'time' => now()->format('d-m-Y H:i') 
@@ -340,10 +358,10 @@ class ScannerRepository extends BaseRepository
 		/*PASO 3: EVALUACION DE CONDICIONES*/
 
 		/*El precio ANTES era menor al valor de la ma*/
-		$a = ($fast_prevous < $slow_prevous);
+		//$a = ($fast_prevous < $slow_prevous);
 
 		/*El precio AHORA es mayor al valor de la ma*/
-		$b = ($fast_last > $slow_last);
+		//$b = ($fast_last > $slow_last);
 
 		/*Respuesta por default*/
 		$data_signal = [
@@ -359,19 +377,23 @@ class ScannerRepository extends BaseRepository
 		];
 
 		/* Cuando el valor del precio actual $fast  cruza de abajo hacía arriba la ema $slow entonces se da una señal de compra. */
-		if ($a && $b) 
+		if (($price_prevous < $slow_prevous) && ($price_last > $slow_last) && ($price_last > $price_prevous))
 		{
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
 			$data_signal['type'] = 'BUY';
+
+            return  $data_signal;
 		}
 
 		/* Cuando el valor del precio actual $fast  cruza de arriba hacia abajo ema $slow entonces se da una señal de venta. */
-		if (!$a && !$b) 
+		if (($price_prevous > $slow_prevous) && ($price_last < $slow_last) && ($price_last < $price_prevous))
 		{
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
 			$data_signal['type'] = 'SELL';
+
+            return  $data_signal;
 		}
 
 		return  $data_signal;
@@ -404,12 +426,16 @@ class ScannerRepository extends BaseRepository
 
 		$fast = AlphaVantage::getDirect($fast_request);
 		
+		$price = AlphaVantage::getPrice($default_request['symbol']);
+
+		/*
 		if($scanner->scanner_type == 'stock_market')
 		{
 			$price = AlphaVantage::getStockPrice($default_request['symbol']);
 		}else{
 			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
 		}
+		*/
 
 		if (!$fast || !$slow || !$price) 
 		{
@@ -418,6 +444,8 @@ class ScannerRepository extends BaseRepository
 				'type' => 'ERROR',
 				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'symbol' => $scanner->merged_symbols,
+				'prev_slow_ma' => '---',
+				'prev_fast_ma' => '---',
 				'slow_ma' => '---',
 				'fast_ma' => '---',
 				'price' => '---',
@@ -455,10 +483,10 @@ class ScannerRepository extends BaseRepository
 		/*PASO 3: EVALUACION DE CONDICIONES*/
 
 		/*MA rapida era menor al valor de la MA lenta*/
-		$a = ($fast_prevous < $slow_prevous);
+		//$a = ($fast_prevous < $slow_prevous);
 
 		/*MA rapida AHORA es mayor al valor de la ma lenta*/
-		$b = ($fast_last > $slow_last);
+		//$b = ($fast_last > $slow_last);
 
 		/*Respuesta por default*/
 		$data_signal = [
@@ -474,20 +502,23 @@ class ScannerRepository extends BaseRepository
 			'time' => now()->format('d-m-Y H:i') 
 		];
 
-		/* Cuando el indicador técnico rápido cruza de abajo hacía arriba al lento entonces se da una señal de compra.  */
-		if ($a && $b) 
-		{
+		/*PASO 3: EVALUACION DE CONDICIONES*/
+		/*MA rapida era menor al valor de la MA lenta y ahora es mayor*/
+		if(($fast_prevous < $slow_prevous) && ($fast_last > $slow_last) && ($fast_last > $fast_prevous)){
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
 			$data_signal['type'] = 'BUY';
+
+			return  $data_signal;	
 		}
 
-		/* Cuando el indicador técnico rápido cruza de arriba hacia abajo al lento entonces se da una señal de venta. */
-		if (!$a && !$b) 
-		{
+		/*MA rapida era mayor al valor de la MA lenta y ahora es menor*/
+		if(($fast_prevous > $slow_prevous) && ($fast_last < $slow_last) && ($fast_last < $fast_prevous)){
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
-			$data_signal['type'] = 'SELL';
+			$data_signal['type'] = 'SELL';	
+
+			return  $data_signal;
 		}
 
 		return  $data_signal;
@@ -503,13 +534,17 @@ class ScannerRepository extends BaseRepository
 		
 		$stoch = AlphaVantage::getDirect($stoch_request);
 
+		/**
 		if($scanner->scanner_type == 'stock_market')
 		{
 			$price = AlphaVantage::getStockPrice($stoch_request['symbol']);
 		}else{
 			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
 		};
-		
+		*/
+
+		$price = AlphaVantage::getPrice($stoch_request['symbol']);
+
 		if (!$stoch || !$price) 
 		{
 			return [
@@ -517,6 +552,8 @@ class ScannerRepository extends BaseRepository
 				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'type' => 'ERROR',
 				'symbol' => $scanner->merged_symbols,
+				'prev_k' => '---',
+				'prev_d' => '---',
 				'k' => '---',
 				'd' => '---',
 				'price' => '---',
@@ -540,16 +577,16 @@ class ScannerRepository extends BaseRepository
 		/*PASO 3: EVALUACION DE CONDICIONES*/
 
 		/*STOCH K era menor al valor de la STOCH D*/
-		$a = ($previous['SlowK'] < $previous['SlowD']);
+		//$a = ($previous['SlowK'] < $previous['SlowD']);
 
 		/*STOCH rapida K AHORA es mayor al valor de la STOCH lenta D*/
-		$b = ($last['SlowK'] > $last['SlowD']);
+		//$b = ($last['SlowK'] > $last['SlowD']);
 
 		/* Los valores previos de cada indicados estan bajo 30*/
-		$c = ($previous['SlowD'] < 30 && $previous['SlowK'] < 30);
+		//$c = ($previous['SlowD'] < 30 && $previous['SlowK'] < 30);
 
 		/* Los valores previos de cada indicados estan sobre 80*/
-		$d = ($previous['SlowD'] > 80 && $previous['SlowK'] < 80);
+		//$d = ($previous['SlowD'] > 80 && $previous['SlowK'] < 80);
 
 		/*Respuesta por default*/
 		$data_signal = [
@@ -565,21 +602,25 @@ class ScannerRepository extends BaseRepository
 			'time' => now()->format('d-m-Y H:i') 
 		];
 
-		/* Cuando el indicador técnico rápido K cruza de abajo hacía arriba al lento D y ambos estaban bajo 30 entonces se da una señal de compra.  */
-		if ($a && $b && $c) 
-		{
-			$data_signal['alert'] = true;
-			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
-			$data_signal['type'] = 'BUY';
-		}
+ 		/* Cuando el indicador técnico rápido K cruza de abajo hacía arriba al lento D y ambos estaban bajo 30 entonces se da una señal de compra.  */
+        if (($previous['SlowD'] < 30 && $previous['SlowK'] < 30) && ($previous['SlowK'] < $previous['SlowD']) && ($last['SlowK'] > $last['SlowD']) && ($last['SlowK'] > $previous['SlowK']))
+        {
+            $data_signal['alert'] = true;
+            $data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
+            $data_signal['type'] = 'BUY';
 
-		/* Cuando el indicador técnico rápido K cruza de arriba hacia abajo al lento D entonces y ambos estaban sobre 80 se da una señal de venta. */
-		if ($d && !$a && !$b) 
-		{
-			$data_signal['alert'] = true;
-			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
-			$data_signal['type'] = 'SELL';
-		}
+            return  $data_signal;
+        }
+
+        /* Cuando el indicador técnico rápido K cruza de arriba hacia abajo al lento D entonces y ambos estaban sobre 80 se da una señal de venta. */
+        if (($previous['SlowD'] > 80 && $previous['SlowK'] > 80) && ($previous['SlowK'] > $previous['SlowD']) && ($last['SlowK'] < $last['SlowD']) && ($last['SlowK'] < $previous['SlowK']))
+        {
+            $data_signal['alert'] = true;
+            $data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
+            $data_signal['type'] = 'SELL';
+
+            return  $data_signal;
+        }
 
 		return  $data_signal;
 
@@ -594,13 +635,17 @@ class ScannerRepository extends BaseRepository
 		
 		$rsi = AlphaVantage::getDirect($request_data);
 
+		$price = AlphaVantage::getPrice($request_data['symbol']);
+
+		/*
 		if($scanner->scanner_type == 'stock_market')
 		{
 			$price = AlphaVantage::getStockPrice($request_data['symbol']);
 		}else{
 			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
 		};
-		
+		*/
+
 		if (!$rsi || !$price) 
 		{
 			return [
@@ -608,6 +653,7 @@ class ScannerRepository extends BaseRepository
 				'type' => 'ERROR',
 				'type_html' => '<span class="badge badge-danger">ERROR</span>',
 				'symbol' => $scanner->merged_symbols,
+				'prev_rsi' => '---',
 				'rsi' => '---',
 				'price' => '---',
 				'time' => now()->format('d-m-Y H:i') 
@@ -659,6 +705,8 @@ class ScannerRepository extends BaseRepository
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
 			$data_signal['type'] = 'BUY';
+
+			return  $data_signal;
 		}
 
 		/* Cuando el rsi estaba sobre 70 y baja entonces es senal de venta  */
@@ -667,6 +715,8 @@ class ScannerRepository extends BaseRepository
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
 			$data_signal['type'] = 'SELL';
+
+			return  $data_signal;
 		}
 
 		return  $data_signal;
@@ -760,6 +810,8 @@ class ScannerRepository extends BaseRepository
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-danger">SELL</span>';
 			$data_signal['type'] = 'SELL';
+
+			return  $data_signal;
 		}
 
 		/* Cuando el precio estaba sobreventa es senal de compra  */
@@ -768,6 +820,8 @@ class ScannerRepository extends BaseRepository
 			$data_signal['alert'] = true;
 			$data_signal['type_html'] = '<span class="badge badge-success">BUY</span>';
 			$data_signal['type'] = 'BUY';
+
+			return  $data_signal;
 		}
 
 		return  $data_signal;

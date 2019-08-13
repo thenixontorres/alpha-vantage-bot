@@ -2312,10 +2312,10 @@ buttons
 
 .btn-success {
     border: none; 
-    background: #895034 !important;
+    background: #28a745 !important;
 }
 .btn-success:hover {
-    background: #37a764 !important;
+    background: #28a745 !important;
 }
 
 .btn-danger {
@@ -3933,7 +3933,7 @@ bs reset
 
 .bg-success,
 .badge-success {
-    background: #895034 !important;
+    background: #28a745 !important;
 }
 
 .bg-danger,

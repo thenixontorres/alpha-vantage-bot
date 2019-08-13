@@ -29,7 +29,7 @@
                         @endforeach
 	                    <div class="col-md-12">
 	                        <center>  
-	                            <a class="btn btn-danger" href="{{ route('backoffice.index') }}">Volver</a>
+                                <a class="btn btn-pill btn-danger" href="{{ route('admin.scanners.index', $scanner->scanner_type) }}">Volver</a>
 	                        </center>
 	                    </div>
                     </div>
@@ -143,19 +143,19 @@
                 switch (code) {
                         
                     case 'MA_SINGLE':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.price}</td><td>${signal.ma}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.prev_ma} -> ${signal.ma}</td><td>${signal.prev_price} -> ${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'MA_DOUBLE':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.slow_ma}</td><td>${signal.fast_ma}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.prev_slow_ma} -> ${signal.slow_ma}</td><td>${signal.prev_fast_ma} -> ${signal.fast_ma}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'BBANDS':
                         var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.upper}</td><td>${signal.middle}</td><td>${signal.lower}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     case 'RSI':
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.rsi}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.prev_rsi} -> ${signal.rsi}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                     default:
-                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.k}</td><td>${signal.d}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
+                        var new_tr = `<tr><td>${signal.symbol}</td><td>${signal.type_html}</td><td>${signal.prev_k} -> ${signal.k}</td><td>${signal.prev_d} -> ${signal.d}</td><td>${signal.price}</td><td>${signal.time}</td></tr>`; 
                     break;
                 }
 

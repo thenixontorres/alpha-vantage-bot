@@ -79,23 +79,22 @@
 
                         @if($scanner->status == 'on')
                             {{ Form::hidden('status', 'off') }}
-                            <button class="btn btn-pill btn-primary"><i class="fa fa-play"></i></button>
-                            
+                            <button class="btn btn-pill btn-success"><i class="fa fa-play"></i></button>
                         @else
                             {{ Form::hidden('status', 'on') }}
-                            <button class="btn btn-pill btn-danger"><i class="fa fa-pause"></i></button>
+                            <button class="btn btn-pill btn-warning"><i class="fa fa-stop"></i></button>
                         @endif
                         
                     {!! Form::close() !!}
                 @else
-                    <button class="btn btn-pill btn-secondary"><i class="fa fa-pause"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-stop"></i></button>
                 @endif
             </td>
             <td> 
                 @if(!empty($scanner->strategies->first()))
-                    <a href="{{route('backoffice.scanners.show', $scanner)}}" class="btn btn-pill btn-primary"><i class="fa fa-play"></i></a>
+                    <a href="{{route('backoffice.scanners.show', $scanner)}}" class="btn btn-pill btn-primary"><i class="fa fa-eye"></i></a>
                 @else
-                    <button class="btn btn-pill btn-secondary"><i class="fa fa-play"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-eye"></i></button>
                 @endif
             </td>
         </tr>

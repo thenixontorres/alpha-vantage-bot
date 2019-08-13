@@ -218,4 +218,50 @@ abstract class AlphaVantage
 			return $response;
 		}
  	}
+
+ 	static function getPrice($symbol)
+ 	{
+ 		$api = env('ALPHA_VANTAGE_API_URL');
+
+ 		$apikey = getApiKey();
+
+ 		if (!$apikey) 
+ 		{
+			return false;
+ 		}
+
+ 		$data = [
+ 			'function' => 'GLOBAL_QUOTE',
+ 			'apikey' => $apikey,
+ 			'symbol' => $symbol, 
+ 		];
+
+ 		$data = http_build_query($data);
+
+ 		$ch = curl_init($api.$data);
+
+ 		//dd($api.$data);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+		$response = curl_exec($ch);
+		curl_close($ch);
+		
+		if(!$response) 
+		{
+			return false;
+		}else{
+
+			$response = json_decode($response, true);
+
+			if (isset($response['Global Quote']['05. price'])) 
+            {
+                $response = $response['Global Quote']['05. price'];
+            }else{
+                $response = false;
+            }
+
+			return $response;
+		}
+ 	}
 }
