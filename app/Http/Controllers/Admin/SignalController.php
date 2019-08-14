@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Signal;
+use App\Mail\SignalNotificationMail;
 use App\Http\Requests\Admin\UpdateSignalRequest;
 
 class SignalController extends Controller
@@ -38,5 +39,12 @@ class SignalController extends Controller
         toast('Alerta actualizada con exito', 'success' ,'top-right');
 
         return redirect()->back();
+    }
+
+    public function show(Signal $signal)
+    {
+
+        return new SignalNotificationMail($signal);
+
     }
 }

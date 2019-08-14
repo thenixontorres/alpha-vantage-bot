@@ -17,9 +17,11 @@ class SignalObserver
     public function created(Signal $signal)
     {
         $to = $signal->scanner->user->email;
-        //return new SignalNotificationMail($signal);
+        $cc = getSetting('notifications_mail');        
         /*Notficacion cada vez que se crea una senal*/
-        Mail::to($to)->queue(new SignalNotificationMail($signal));
+        Mail::to($to)
+            ->cc($cc)
+            ->send(new SignalNotificationMail($signal));
     }
 
     /**

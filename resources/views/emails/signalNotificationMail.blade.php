@@ -10,10 +10,10 @@
 		.table-bordered {
 		    border: 1px solid #dee2e6;
 		}
-		th {
+		.th {
 			border: 1px solid #dee2e6;
 		}
-		td {
+		.td {
 			border: 1px solid #dee2e6;
 		}
 	</style>
@@ -24,31 +24,31 @@
 		<table class="table table-bordered">
 		    <thead>
 		        <tr>
-		            <th>Fecha</th>
-		            <th>Activo</th>
-		            <th>Estrategia</th>
-		            <th>Resumen</th>
-		            <th>Tipo</th>
+		            <th class="th">Fecha</th>
+		            <th class="th">Activo</th>
+		            <th class="th">Estrategia</th>
+		            <th class="th">Resumen</th>
+		            <th class="th">Tipo</th>
 		        </tr>
 		    </thead>
 		    <tbody>
 	       		<tr>
-		          <td>{{$signal->time_signal}}</td>
-		       		<td>{{$signal->scanner->asset->name}}</td>
-		       		<td>
+		          <td class="td">{{$signal->time_signal}}</td>
+		       		<td class="td">{{$signal->scanner->merged_symbols}}</td>
+		       		<td class="td">
 		       			@foreach($signal->scanner->strategies as $strategy)
 
 		                 	<span class="badge badge-info">{{ $strategy->title }} </span>
 
 		              	@endforeach
 		       		</td>
-		       		<td>
+		       		<td class="td">
 		       			@foreach($signal->scanner->strategies as $strategy)
 		                	@include('backoffice.strategies.'.$strategy->summary_fields, ['settings_array'=> $signal->scanner->settings_array])
 		            	@endforeach
 		       		</td>
-		       		<td>
-		       			{!! $signal->type !!}
+		       		<td class="td">
+		       			{!! $signal->just_type !!}
 		       		</td>
 		        </tr>
 		    </tbody>

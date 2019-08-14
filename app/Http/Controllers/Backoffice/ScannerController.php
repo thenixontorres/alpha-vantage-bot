@@ -74,6 +74,15 @@ class ScannerController extends Controller
 				
 		$input['user_id'] = auth()->user()->id;
 
+        $limit = getSetting('scanners_limit');
+
+        if (auth()->user()->scanners->count() >= $limit) 
+        {
+            toast('Tu cuenta tiene un limite de '.$limit.' escaners', 'error' ,'top-right');
+
+            return redirect()->back();
+        }
+
 		$create = $this->scannerRepository->create($input);
 
         toast($create['message'], $create['type'] ,'top-right');

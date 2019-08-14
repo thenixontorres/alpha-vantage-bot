@@ -13,7 +13,7 @@ class SettingsTableSeeder extends Seeder
     {
         DB::table('settings')->insert([
             'status'         => 'on',
-            'scanners_limit' => '3',
+            'scanners_limit' => '1',
             'notifications_mail' => 'nixontorres26@gmail.com'
         ]);
     }

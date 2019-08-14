@@ -57,7 +57,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','
 
 	Route::resource('settings', 'SettingController')->only(['index','update']);
 
-	Route::resource('signals', 'SignalController')->only(['update']);
+	Route::resource('signals', 'SignalController')->only(['update','show']);
 
 	Route::get('signals/index/{type?}','SignalController@index')->name('signals.index');
 

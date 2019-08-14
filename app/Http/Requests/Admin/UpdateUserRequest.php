@@ -38,7 +38,6 @@ class UpdateUserRequest extends FormRequest
             ],
             'password' => [
                 'nullable',
-                'confirmed',
             ],
             'status' => 'required',
             'type' => 'required'
