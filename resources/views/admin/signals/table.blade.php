@@ -30,7 +30,7 @@
             @endforeach
        		</td>
        		<td>
-            {!! $signal->just_type !!}
+            {!! $signal->type !!}
        		</td>
           <td>
             @if($signal->status == 'ignored')

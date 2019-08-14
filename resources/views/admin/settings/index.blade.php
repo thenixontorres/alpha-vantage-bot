@@ -19,8 +19,8 @@
                     <div class="form-group row mb-0">
                       <div class="col-md-12">
                           <center>  
-                              <a class="btn btn-danger" href="{{ route('backoffice.index') }}">Volver</a>
-                              <button type="submit" class="btn btn-primary">
+                              <a class="btn btn-pill btn-danger" href="{{ route('backoffice.index') }}">Volver</a>
+                              <button type="submit" class="btn btn-pill btn-primary">
                                   Actualizar
                               </button>
                           </center>

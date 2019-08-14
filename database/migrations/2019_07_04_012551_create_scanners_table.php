@@ -17,7 +17,7 @@ class CreateScannersTable extends Migration
           	$table->bigIncrements('id');
             $table->longText('settings')->nullable();
             $table->enum('scanner_type', ['physical','digital','stock_market'])->default('stock_market');
-            $table->enum('interval', ['1min', '5min', '15min', '30min','60min', 'daily','weekly','monthly'])->default('60min');
+            $table->enum('interval', ['1min', '5min', '15min', '30min','60min', 'daily','weekly','monthly'])->default('1min');
             $table->unsignedBigInteger('asset_id'); 
             $table->unsignedBigInteger('asset_to_id')->nullable(); 
             $table->enum('status', ['on','off'])->default('off');

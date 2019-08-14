@@ -27,6 +27,15 @@ class KeysTableSeeder extends Seeder
             'created_at' => now()
         ]);
 
+        DB::table('keys')->insert([
+            'key'         => 'YHZ7J6MBI9BN6XD2',
+            'email' => 'joaivert@gmail.com',
+            'is_active' => false,
+            'name' => 'LLave Free, joaivert',
+            'created_at' => now()
+        ]);
+
+        
          
     }
 }

@@ -72,7 +72,7 @@
 
                     <div class="text-center">
                         <div class="mt-4 mb-3">
-                            <img class="rounded-circle" src="{{ asset('img/turtle.png')}}" width="85" alt=""/>
+                            <img src="{{ asset('img/turtle.png')}}" width="85" alt=""/>
                         </div>
                         <h5 class="text-uppercase mb-0">{{Auth::user()->name}}</h5>
                         <p class="text-muted mb-0">{{Auth::user()->email}}</p>

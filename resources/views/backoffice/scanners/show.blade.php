@@ -29,12 +29,12 @@
                                 @include('backoffice.scanners.alerts_table')
     						</div>
                         @endforeach
-	                    <div class="col-md-12">
-	                        <center>  
-	                            <a class="btn btn-pill btn-danger" href="{{ route('backoffice.scanners.index', $scanner->scanner_type) }}">Volver</a>
-	                        </center>
-	                    </div>
                     </div>
+                </div>
+            </div>
+            <div class="row pt-4">
+                 <div class="col-md-12">
+                    <a class="btn btn-pill btn-danger" href="{{ route('backoffice.scanners.index', $scanner->scanner_type) }}">Volver</a>
                 </div>
             </div>
         </div>
