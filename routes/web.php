@@ -49,6 +49,8 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 /*BACKOFFICE ROUTES*/
 Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','admin'])->group(function () {
 
+	Route::get('/','HomeController@index')->name('index');
+
 	Route::resource('keys', 'KeyController');
 
 	Route::resource('users', 'UserController');
@@ -57,7 +59,7 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','
 
 	Route::resource('settings', 'SettingController')->only(['index','update']);
 
-	Route::resource('signals', 'SignalController')->only(['update','show']);
+	Route::resource('signals', 'SignalController')->only(['update']);
 
 	Route::get('signals/index/{type?}','SignalController@index')->name('signals.index');
 

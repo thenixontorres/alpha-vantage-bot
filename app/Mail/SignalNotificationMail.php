@@ -29,6 +29,6 @@ class SignalNotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.signalNotificationMail');
+        return $this->subject('[TURTRADING] Nueva alerta')->view('emails.signalNotificationMail');
     }
 }
