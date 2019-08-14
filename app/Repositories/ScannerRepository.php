@@ -351,9 +351,9 @@ class ScannerRepository extends BaseRepository
 		$serie = $this->series_type[$slow_request['series_type']];
 
 		/* obtenemos las ultimos dos valores del precio*/
-		$fast_last = array_shift($fast)[$serie];
+		$price_last = array_shift($fast)[$serie];
 
-		$fast_prevous =  array_shift($fast)[$serie];
+		$price_prevous =  array_shift($fast)[$serie];
 
 		/*PASO 3: EVALUACION DE CONDICIONES*/
 
@@ -370,9 +370,9 @@ class ScannerRepository extends BaseRepository
 			'type_html' => '<span class="badge badge-secondary">NEUTRO</span>',
 			'symbol' => $scanner->merged_symbols,
 			'prev_ma' => $slow_prevous,
-			'prev_price' => $fast_prevous,
+			'prev_price' => $price_prevous,
 			'ma' => $slow_last,
-			'price' => $fast_last,
+			'price' => $price_last,
 			'time' => now()->format('d-m-Y H:i') 
 		];
 

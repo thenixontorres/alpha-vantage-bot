@@ -41,6 +41,24 @@ class KeyController extends Controller
         return redirect()->back();
     }
 
+    public function update(Key $key, UpdateKeyRequest $request)
+    {
+        $old_active = Key::where('is_active', true)->first();
+
+        if (!empty($old_active)) 
+        {
+            $old_active->is_active = false;
+            $old_active->update();
+        }
+
+        $key->is_active = true;
+        $key->update();
+
+        toast('Llave activada con exito', 'success' ,'top-right');
+
+        return redirect()->back();  
+    }
+
     public function destroy(Key $key)
     {
     	if ($key->is_active) 

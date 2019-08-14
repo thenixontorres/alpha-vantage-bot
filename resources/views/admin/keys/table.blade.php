@@ -18,21 +18,32 @@
 		            @if($key->is_active)
 		            	<span class="badge badge-success">EN USO</span>
 		            @else
-		            	<span class="badge badge-warning">PENDIENTE</span>
+		            	<span class="badge badge-warning">APAGADA</span>
 		            @endif
 		        </td>
 
-	            <td>  
-					<div class="dropdown">
+	            <td>                              
+
+                @if(!$key->is_active)
+
+					         <div class="dropdown">
 	                    <button class="btn btn-pill btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    <i class="fa fa-gear"></i>
 	                    </button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {!! Form::open(['route' => ['admin.keys.destroy', $key], 'method' => 'delete', 'id'=> 'd-'.$key->id]) !!}
-                            <a class="dropdown-item" href="#" onclick="destroy({{$key->id}});">Eliminar llave</a>
+                              {!! Form::model($key, ['route' => ['admin.keys.update', $key], 'method' => 'patch', 'id'=> 'u-'.$key->id]) !!}
+                                <a class="dropdown-item" href="#" onclick="update({{$key->id}});">Activar llave</a>
+                            
+                              {!! Form::close() !!}
+
+                              {!! Form::open(['route' => ['admin.keys.destroy', $key], 'method' => 'delete', 'id'=> 'd-'.$key->id]) !!}
+                              <a class="dropdown-item" href="#" onclick="destroy({{$key->id}});">Eliminar llave</a>
                             {!! Form::close() !!}
+                           
 	                    </div>
-	                </div>
+	                 </div>
+                @endif
+
 	          	</td>
 	        </tr>
         @endforeach
@@ -62,6 +73,27 @@
             });    
         }else{
             $('#d-'+id).submit();
+        }
+    }
+
+    function update(id, success = true)
+    {
+        if (success) {
+            Swal.fire({
+              title: 'Advertencia',
+              text: "Confime que desea activar esta llave.",
+              cancelButtonText: 'Cancelar',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, activar'
+            }).then((result) => {
+              if (result.value) {
+                update(id, false);
+              }
+            });    
+        }else{
+            $('#u-'+id).submit();
         }
     }
 </script>
