@@ -36,7 +36,7 @@ class SignalObserver
             . "<b>FECHA: </b>" . $signal->time_signal . "\n";
 
             Telegram::sendMessage([
-                'chat_id' => '-1001251027618',
+                'chat_id' => env('TELEGRAM_CHANNEL_ID'),
                 'parse_mode' => 'HTML',
                 'text' => $text
             ]);

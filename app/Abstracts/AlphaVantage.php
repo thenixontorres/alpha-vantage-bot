@@ -195,11 +195,15 @@ abstract class AlphaVantage
  		$data['apikey'] = $apikey;
  		
  		$data = http_build_query($data);
- 		 		
+ 		
  		$ch = curl_init($api.$data);
+
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+		
 		$response = curl_exec($ch);
+		
 		curl_close($ch);
 		
 		if(!$response) 
