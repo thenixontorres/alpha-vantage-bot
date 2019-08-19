@@ -17,24 +17,30 @@ class SignalObserver
      */
     public function created(Signal $signal)
     {
-        /*Notficacion cada vez que se crea una senal*/
-        $to = $signal->scanner->user->email;
-        //$cc = getSetting('notifications_mail');        
-        Mail::to($to)->send(new SignalNotificationMail($signal));
-        
-        /*Mensaje al pool de alertas (TELEGRAM)*/
-        $text = "<b>Nueva alerta:</b>\n"
-        . "<b>USUARIO: </b>" . $signal->scanner->user->name . "\n"
-        . "<b>ACTIVO: </b>" . $signal->scanner->merged_symbols . "\n"
-        . "<b>TIPO: </b>" . $signal->just_type . "\n"
-        . "<b>INTERVALO: </b>" . $signal->scanner->interval . "\n"
-        . "<b>FECHA: </b>" . $signal->time_signal . "\n";
+        if ($signal->scanner->email_notifications == 'on') 
+        {
+            /*Notficacion cada vez que se crea una senal*/
+            $to = $signal->scanner->user->email;
+            //$cc = getSetting('notifications_mail');        
+            Mail::to($to)->send(new SignalNotificationMail($signal));
+        }
 
-        Telegram::sendMessage([
-            'chat_id' => '-1001251027618',
-            'parse_mode' => 'HTML',
-            'text' => $text
-        ]);
+        if ($signal->scanner->pool_notifications == 'on') 
+        {
+            /*Mensaje al pool de alertas (TELEGRAM)*/
+            $text = "<b>Nueva alerta:</b>\n"
+            . "<b>USUARIO: </b>" . $signal->scanner->user->name . "\n"
+            . "<b>ACTIVO: </b>" . $signal->scanner->merged_symbols . "\n"
+            . "<b>TIPO: </b>" . $signal->just_type . "\n"
+            . "<b>INTERVALO: </b>" . $signal->scanner->interval . "\n"
+            . "<b>FECHA: </b>" . $signal->time_signal . "\n";
+
+            Telegram::sendMessage([
+                'chat_id' => '-1001251027618',
+                'parse_mode' => 'HTML',
+                'text' => $text
+            ]);
+        }
     }
 
     /**
