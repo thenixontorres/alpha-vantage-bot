@@ -203,13 +203,6 @@ class ScannerController extends Controller
             return redirect()->back();
         }
 
-		$scanner->strategies()->detach();
-		
-		foreach ($scanner->signals as $signal) 
-		{
-			$signal->delete();
-		}
-
 		$scanner->delete();
 
         toast('Escaner borrado con exito', 'success' ,'top-right');

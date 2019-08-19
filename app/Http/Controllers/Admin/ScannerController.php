@@ -131,13 +131,6 @@ class ScannerController extends Controller
 
 	public function destroy(Scanner $scanner)
 	{
-		$scanner->strategies()->detach();
-		
-		foreach ($scanner->signals as $signal) 
-		{
-			$signal->delete();
-		}
-
 		$scanner->delete();
 
         toast('Escaner borrado con exito', 'success' ,'top-right');

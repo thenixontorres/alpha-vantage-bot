@@ -75,19 +75,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        
-        foreach ($user->scanners as $scanner) 
-        {
-            $scanner->strategies()->detach();
-
-            foreach ($scanner->signals as $signal) 
-            {
-                $signal->delete();
-            }
-
-            $scanner->delete();
-        }
-
         $user->delete();
 
         toast('Usuario borrado con exito', 'success' ,'top-right');

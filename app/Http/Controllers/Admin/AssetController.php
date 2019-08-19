@@ -59,19 +59,7 @@ class AssetController extends Controller
     }
 
     public function destroy(Asset $asset)
-    {
-        if (!empty($asset->scanner)) 
-        {
-            $asset->scanner->strategies()->detach();
-
-            foreach ($asset->scanner->signals as $signal) 
-            {
-                $signal->delete();
-            }
-            
-            $asset->scanner->delete();
-        }
-        
+    {   
         $asset->delete();
 
         toast('Activo borrado con exito', 'success' ,'top-right');
