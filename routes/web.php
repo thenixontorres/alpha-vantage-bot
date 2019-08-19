@@ -30,6 +30,10 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 	Route::patch('scanners/updateSettings/{scanner}','ScannerController@updateSettings')->name('scanners.updateSettings');
 
 	Route::patch('scanners/updateStatus/{scanner}','ScannerController@updateStatus')->name('scanners.updateStatus');
+	
+	Route::patch('scanners/updatePool/{scanner}','ScannerController@updatePool')->name('scanners.updatePool');
+
+	Route::patch('scanners/updateEmail/{scanner}','ScannerController@updateEmail')->name('scanners.updateEmail');
 
 	Route::post('scanners/detachStrategy','ScannerController@detachStrategy')->name('scanners.detachStrategy');
 
@@ -72,6 +76,10 @@ Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','
 	Route::patch('scanners/updateSettings/{scanner}','ScannerController@updateSettings')->name('scanners.updateSettings');
 
 	Route::patch('scanners/updateStatus/{scanner}','ScannerController@updateStatus')->name('scanners.updateStatus');
+
+	Route::patch('scanners/updatePool/{scanner}','ScannerController@updatePool')->name('scanners.updatePool');
+
+	Route::patch('scanners/updateEmail/{scanner}','ScannerController@updateEmail')->name('scanners.updateEmail');
 
 	Route::post('scanners/detachStrategy','ScannerController@detachStrategy')->name('scanners.detachStrategy');
 

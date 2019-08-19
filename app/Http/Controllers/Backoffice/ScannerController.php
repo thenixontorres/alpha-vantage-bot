@@ -167,6 +167,42 @@ class ScannerController extends Controller
 		return redirect()->back();
 	}
 
+    public function updateEmail(Request $request, Scanner $scanner){
+        
+        if ($scanner->user_id != auth()->user()->id) 
+        {
+            toast('Permiso denegado', 'error' ,'top-right');
+        
+            return redirect()->back();
+        }
+
+        $scanner->email_notifications = $request->email_notifications;
+        
+        $scanner->update();
+
+        toast('Estatus cambiado con exito', 'success' ,'top-right');
+
+        return redirect()->back();
+    }
+
+    public function updatePool(Request $request, Scanner $scanner){
+        
+        if ($scanner->user_id != auth()->user()->id) 
+        {
+            toast('Permiso denegado', 'error' ,'top-right');
+        
+            return redirect()->back();
+        }
+
+        $scanner->pool_notifications = $request->pool_notifications;
+        
+        $scanner->update();
+
+        toast('Estatus cambiado con exito', 'success' ,'top-right');
+
+        return redirect()->back();
+    }
+
 	public function show(Scanner $scanner)
 	{ 
 		if ($scanner->user_id != auth()->user()->id) 

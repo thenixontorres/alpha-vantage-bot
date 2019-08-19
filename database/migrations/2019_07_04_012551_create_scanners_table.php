@@ -21,6 +21,8 @@ class CreateScannersTable extends Migration
             $table->unsignedBigInteger('asset_id'); 
             $table->unsignedBigInteger('asset_to_id')->nullable(); 
             $table->enum('status', ['on','off'])->default('off');
+            $table->enum('email_notifications', ['on','off'])->default('off');
+            $table->enum('pool_notifications', ['on','off'])->default('on');
             $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();

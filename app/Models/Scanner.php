@@ -18,6 +18,8 @@ class Scanner extends Model
         'asset_to_id',
         'interval',
         'status',
+        'email_notifications',
+        'pool_notifications',
         'scanner_type',
         'user_id'
     ];

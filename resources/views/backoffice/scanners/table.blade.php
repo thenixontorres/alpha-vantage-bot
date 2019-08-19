@@ -74,20 +74,52 @@
             </td>
             <td>
                 @if(!empty($scanner->strategies->first()))
+                    <div class="row">
+                        <div class="col-md-4">
+                            {!! Form::model($scanner, ['route' => ['backoffice.scanners.updateStatus', $scanner], 'method' => 'patch']) !!}
 
-                    {!! Form::model($scanner, ['route' => ['backoffice.scanners.updateStatus', $scanner], 'method' => 'patch']) !!}
+                                @if($scanner->status == 'on')
+                                    {{ Form::hidden('status', 'off') }}
+                                    <button class="btn btn-pill btn-success"><i class="fa fa-play"></i></button>
+                                @else
+                                    {{ Form::hidden('status', 'on') }}
+                                    <button class="btn btn-pill btn-secondary"><i class="fa fa-play"></i></button>
+                                @endif
+                                
+                            {!! Form::close() !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::model($scanner, ['route' => ['backoffice.scanners.updateEmail', $scanner], 'method' => 'patch']) !!}
 
-                        @if($scanner->status == 'on')
-                            {{ Form::hidden('status', 'off') }}
-                            <button class="btn btn-pill btn-success"><i class="fa fa-envelope-o"></i></button>
-                        @else
-                            {{ Form::hidden('status', 'on') }}
-                            <button class="btn btn-pill btn-secondary"><i class="fa fa-envelope-o"></i></button>
-                        @endif
-                        
-                    {!! Form::close() !!}
+                                @if($scanner->email_notifications == 'on')
+                                    {{ Form::hidden('email_notifications', 'off') }}
+                                    <button class="btn btn-pill btn-success"><i class="fa fa-envelope-o"></i></button>
+                                @else
+                                    {{ Form::hidden('email_notifications', 'on') }}
+                                    <button class="btn btn-pill btn-secondary"><i class="fa fa-envelope-o"></i></button>
+                                @endif
+                                
+                            {!! Form::close() !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::model($scanner, ['route' => ['backoffice.scanners.updatePool', $scanner], 'method' => 'patch']) !!}
+
+                                @if($scanner->pool_notifications == 'on')
+                                    {{ Form::hidden('pool_notifications', 'off') }}
+                                    <button class="btn btn-pill btn-success"><i class="fa fa-telegram"></i></button>
+                                @else
+                                    {{ Form::hidden('pool_notifications', 'on') }}
+                                    <button class="btn btn-pill btn-secondary"><i class="fa fa-telegram"></i></button>
+                                @endif
+                                
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
                 @else
-                    <button class="btn btn-pill btn-secondary"><i class="fa fa-stop"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-play"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-envelope-o"></i></button>
+                    <button class="btn btn-pill btn-secondary"><i class="fa fa-telegram"></i></button>
+
                 @endif
             </td>
             <td> 
