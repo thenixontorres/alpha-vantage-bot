@@ -7,7 +7,7 @@ use App\Models\Asset;
 use App\Models\Strategy;
 use App\Models\Signal;
 use App\Repositories\BaseRepository;
-use App\Abstracts\AlphaVantage;
+use App\Traits\AlphaVantage;
 
 /**
  *	Aplicacion de cada
@@ -311,9 +311,11 @@ class ScannerRepository extends BaseRepository
 		}
 
 		/* consultamos la api para obtener la informacion necesaria */
-		$slow = AlphaVantage::getDirect($slow_request);
+		$alphaVantage = new AlphaVantage;
 
-		$fast = AlphaVantage::getDirect($fast_request);
+		$slow = $alphaVantage->get($slow_request);
+
+		$fast = $alphaVantage->get($fast_request);
 
 		if (!$fast || !$slow) 
 		{
@@ -422,20 +424,14 @@ class ScannerRepository extends BaseRepository
 		$fast_request = array_merge($fast_request, $default_request);
 
 		/* consultamos la api para obtener la informacion necesaria */
-		$slow = AlphaVantage::getDirect($slow_request);
 
-		$fast = AlphaVantage::getDirect($fast_request);
+		$alphaVantage = new AlphaVantage;
+ 		
+		$slow = $alphaVantage->get($slow_request);
+
+		$fast = $alphaVantage->get($fast_request);
 		
-		$price = AlphaVantage::getPrice($default_request['symbol']);
-
-		/*
-		if($scanner->scanner_type == 'stock_market')
-		{
-			$price = AlphaVantage::getStockPrice($default_request['symbol']);
-		}else{
-			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
-		}
-		*/
+		$price = $alphaVantage->getPrice($default_request['symbol']);
 
 		if (!$fast || !$slow || !$price) 
 		{
@@ -532,18 +528,11 @@ class ScannerRepository extends BaseRepository
 		
 		$stoch_request = $scanner->settings_array['STOCH']['request_data'];
 		
-		$stoch = AlphaVantage::getDirect($stoch_request);
+		$alphaVantage = new AlphaVantage();
+		
+		$stoch = $alphaVantage->get($stoch_request);
 
-		/**
-		if($scanner->scanner_type == 'stock_market')
-		{
-			$price = AlphaVantage::getStockPrice($stoch_request['symbol']);
-		}else{
-			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
-		};
-		*/
-
-		$price = AlphaVantage::getPrice($stoch_request['symbol']);
+		$price = $alphaVantage->getPrice($stoch_request['symbol']);
 
 		if (!$stoch || !$price) 
 		{
@@ -633,18 +622,11 @@ class ScannerRepository extends BaseRepository
 		/* Obtenemos la configuracion indicador stoch */
 		$request_data = $scanner->settings_array['RSI']['request_data'];
 		
-		$rsi = AlphaVantage::getDirect($request_data);
+		$alphaVantage = new AlphaVantage;
 
-		$price = AlphaVantage::getPrice($request_data['symbol']);
+		$rsi = $alphaVantage->get($request_data);
 
-		/*
-		if($scanner->scanner_type == 'stock_market')
-		{
-			$price = AlphaVantage::getStockPrice($request_data['symbol']);
-		}else{
-			$price = AlphaVantage::getCurrecyExchange($scanner->asset->symbol, $scanner->assetTo->symbol);
-		};
-		*/
+		$price = $alphaVantage->getPrice($request_data['symbol']);
 
 		if (!$rsi || !$price) 
 		{
@@ -748,10 +730,11 @@ class ScannerRepository extends BaseRepository
 			];
 		}	
 
+		$alphaVantage = new AlphaVantage;
 		/* consultamos la api para obtener la informacion necesaria */
-		$bbands = AlphaVantage::getDirect($bbands_request);
+		$bbands = $alphaVantage->get($bbands_request);
 
-		$prices = AlphaVantage::getDirect($prices_request);
+		$prices = $alphaVantage->get($prices_request);
 
 		if (!$bbands || !$prices) 
 		{

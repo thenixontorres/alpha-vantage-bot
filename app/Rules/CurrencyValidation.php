@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\Abstracts\AlphaVantage;
+use App\Traits\AlphaVantage;
 use App\Models\Asset;
 
 class CurrencyValidation implements Rule
@@ -40,8 +40,10 @@ class CurrencyValidation implements Rule
 
         $symbol = $symbol[1];
 
+        $alphaVantage = new AlphaVantage;
+
         /*verificamos que el simbolo corresponda a un activo valido de alpha vantage*/
-        $respose = AlphaVantage::get('TIME_SERIES_INTRADAY', ['symbol' => $symbol, 'interval'=>'5min']);
+        $respose = $alphaVantage->getPrice($symbol);
 
         /*Si fallo la consulta a la api*/
         if (!$respose) 

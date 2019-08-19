@@ -2,49 +2,36 @@
 
 namespace App\Abstracts;
 
+use GuzzleHttp\Client;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+
 abstract class AlphaVantage
 {
- 	/*Funcion generica para consultar al API*/
- 	static function get($function, $data)
- 	{
- 		$api = env('ALPHA_VANTAGE_API_URL');
+
+	static function get($data)
+	{
+		$data['apikey'] = getApiKey();  
+
+		$client = new client(['base_uri' => env('ALPHA_VANTAGE_API_URL')]);
+
+		$url = 'query?'.http_build_query($data);
  		
- 		$data['function'] = $function;
- 		
- 		$apikey = getApiKey();
-
- 		if (!$apikey) 
- 		{
-			return false;
- 		}
-
- 		$data['apikey'] = $apikey;  
-
- 		$data = http_build_query($data);
- 		 		
- 		$ch = curl_init($api.$data);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-		$response = curl_exec($ch);
-		curl_close($ch);
+ 		try {
+		    $response = $client->request('GET', $url);
+		} catch (ClientErrorResponseException $exception) {
+		    $response = $exception->getResponse()->getBody(true);
+		   	return false;
+		}
 		
-		dd($response);
-
-		if(!$response) 
+		$response = json_decode($response->getBody()->getContents(), true);
+		
+		if (isset($response['note']) || isset($response['Note']) || isset($response['Error Message'])) 
 		{
 			return false;
-		}else{
-			
-			$response = json_decode($response, true);
-			
-			if (isset($response['note']) || isset($response['Note']) || isset($response['Error Message'])) 
-			{
-				return false;
-			}
-
-			return $response;;
 		}
- 	}
+
+		return $response;
+	}
 
  	static function getStockPrice($symbol)
  	{

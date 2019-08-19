@@ -14,7 +14,7 @@ use App\Models\Scanner;
 use App\Models\Asset;
 use App\Models\Strategy;
 use Auth;
-
+use App\Abstracts\AlphaVantage;
 /**
  * Class IndicatorsController.
  *
@@ -30,8 +30,7 @@ class ScannerController extends Controller
     }
 
     public function index($type = 'all')
-    {
-    	
+    {        
         /*estrategias para el dropdown*/
         $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
 

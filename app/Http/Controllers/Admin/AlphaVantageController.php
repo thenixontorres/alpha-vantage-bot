@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Abstracts\AlphaVantage;
+use App\Traits\AlphaVantage;
 
 class AlphaVantageController extends Controller
 {
@@ -14,7 +14,14 @@ class AlphaVantageController extends Controller
     */
     public function autocomplete(Request $request)
     {
-    	$response = AlphaVantage::get('SYMBOL_SEARCH', $request->all());
+        $data = $request->all();
+
+        $data['function'] = 'SYMBOL_SEARCH';
+
+        $alphaVantage = new AlphaVantage;
+
+    	$response = $alphaVantage->get($data);
+        
         /*Formateamos para el autocomplete*/
         $bestMatches = [];
 

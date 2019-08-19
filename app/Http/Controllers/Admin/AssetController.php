@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateAssetRequest;
 use App\Models\Asset;
 use App\Models\Strategy;
-use App\Abstracts\AlphaVantage;
 
 class AssetController extends Controller
 {
