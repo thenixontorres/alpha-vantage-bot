@@ -16,7 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('status', ['on', 'off'])->default('on');
-            //$table->string('alpha_vantage_key');
+            $table->string('alpha_vantage_api');
             $table->string('notifications_mail');
             $table->string('scanners_limit')->default(3);
             $table->softDeletes();

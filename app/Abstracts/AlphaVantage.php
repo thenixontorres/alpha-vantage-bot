@@ -7,7 +7,7 @@ use Guzzle\Http\Exception\ClientErrorResponseException;
 
 abstract class AlphaVantage
 {
-
+	/*FUERA DE USO - MOVIDO A TRAITS*/
 	static function get($data)
 	{
 		$data['apikey'] = getApiKey();  

@@ -13,7 +13,7 @@ class Setting extends Model
 
     protected $fillable = [
         'status',
-        'alpha_vantage_key',
+        'alpha_vantage_api',
         'notifications_mail',
         'scanners_limit'
     ];

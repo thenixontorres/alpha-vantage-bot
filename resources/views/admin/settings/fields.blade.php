@@ -16,5 +16,10 @@
             {{Form::email('notifications_mail' ,null, ['class'=> 'form-control', 'required'])}}
             <small id="statusHelp" class="form-text text-muted"> Email que recibira las notificaciones luego de una alerta. </small> 
         </div>
+
+        <div class="form-group col-md-12">
+            {{Form::label('alpha_vantage_api','URL de API:')}}
+            {{Form::text('alpha_vantage_api' ,null, ['class'=> 'form-control', 'required'])}}
+        </div>
         
     </div>

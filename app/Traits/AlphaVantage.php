@@ -13,7 +13,7 @@ class AlphaVantage
 
 	function __construct()
 	{
-		$this->client = new client(['base_uri' => env('ALPHA_VANTAGE_API_URL')]);
+		$this->client = new client(['base_uri' => getSetting('alpha_vantage_api')]);
 		$this->apikey = getApiKey(); 
 	}
 
