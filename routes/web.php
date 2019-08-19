@@ -49,6 +49,8 @@ Route::namespace('Backoffice')->name('backoffice.')->prefix('backoffice')->middl
 /*BACKOFFICE ROUTES*/
 Route::namespace('Admin')->name('admin.')->prefix('admin')->middleware(['auth','admin'])->group(function () {
 
+	Route::resource('/telegram','TelegramController');
+
 	Route::get('/','HomeController@index')->name('index');
 
 	Route::resource('keys', 'KeyController');

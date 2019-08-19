@@ -34,7 +34,7 @@ class ScannerObserver
      * @param  \App\Scanner  $Scanner
      * @return void
      */
-    public function deleted(Scanner $Scanner)
+    public function deleted(Scanner $scanner)
     {
         $scanner->strategies()->detach();
         

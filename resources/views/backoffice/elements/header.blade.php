@@ -1,14 +1,17 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNav">
         <div class="box-container">
            <!--brand name for responsive-->
+            
            <a class="navbar-brand navbar-brand-responsive" href="{{ route('backoffice.index') }}">
-                    
-                    <img class="pr-3 float-left" src="{{ asset('img/isotipo.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 25px;"  alt=""/>
-                    <div class="float-left" style="margin-top: 4px;">
-                        <div>TURTRADING</div>
-                       
-                    </div>
-                </a>
+                  
+                {{--  
+                <img class="pr-3 float-left" src="{{ asset('img/turtle.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 25px;"  alt=""/>
+                <div class="float-left" style="margin-top: 4px;">
+                    <div>TURTRADING</div>
+                   
+                </div>
+                 --}}
+            </a>
            <!--/brand name for responsive-->
 
             <!--responsive navigation list toggle-->
@@ -26,12 +29,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
 
                 <!--brand name-->
+                <a class="navbar-brand" href="#" data-jq-dropdown="#jq-dropdown-1">
+                    <img class="pr-3 float-left" style="height: 25px;" src="{{ asset('img/turtle.png')}}" srcset="{{ asset('img/turtle.png')}}"  alt=""/>
+                    <div class="float-left">
+                        <div>TURTRADING</div>
+                    </div>
+                </a>
+                {{-- 
                 <a class="navbar-brand navbar-hide-responsive" href="{{ route('backoffice.index') }}">
                     <img class="pr-3 float-left" src="{{ asset('img/turtle.png')}}" srcset="{{ asset('img/turtle.png')}}" style="height: 25px;"  alt=""/>
                     <div class="float-left" style="margin-top: 4px;">
                         <div>TURTRADING</div>
                     </div>
                 </a>
+                --}}
                 <!--/brand name-->
 
                 <!--header rightside links-->

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
-class HomeController extends Controller
+class TelegramController extends Controller
 {
     public function index()
     {
-    	return redirect()->route('backoffice.index');
+    	//$activity = Telegram::getUpdates();
+        //dd($activity);
     }
 }

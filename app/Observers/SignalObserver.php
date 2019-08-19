@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Signal;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SignalNotificationMail;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class SignalObserver
 {
@@ -16,12 +17,23 @@ class SignalObserver
      */
     public function created(Signal $signal)
     {
-        $to = $signal->scanner->user->email;
-        $cc = getSetting('notifications_mail');        
         /*Notficacion cada vez que se crea una senal*/
-        Mail::to($to)
-            ->cc($cc)
-            ->send(new SignalNotificationMail($signal));
+        $to = $signal->scanner->user->email;
+        //$cc = getSetting('notifications_mail');        
+        Mail::to($to)->send(new SignalNotificationMail($signal));
+        
+        /*Mensaje al pool de alertas (TELEGRAM)*/
+        $text = "<b>Nueva alerta:</b>:\n"
+        . "<b>USUARIO: </b>" . $signal->scanner->user->name . "\n"
+        . "<b>ACTIVO: </b>" . $signal->scanner->merged_symbols . "\n"
+        . "<b>TIPO: </b>" . $signal->just_type . "\n"
+        . "<b>FECHA: </b>" . $signal->time_signal . "\n";
+
+        Telegram::sendMessage([
+            'chat_id' => env('TELEGRAM_CHANNEL_ID'),
+            'parse_mode' => 'HTML',
+            'text' => $text
+        ]);
     }
 
     /**

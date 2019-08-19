@@ -28,7 +28,7 @@ class CreateScannerRequest extends FormRequest
             'asset_id' => ['integer','required'],
             'strategy_id' => ['array','required'],
             'scanner_type' => 'required',
-            'asset_to_id' => ['required_if:scanner_type,==,physical']
+            'asset_to_id' => ['required_if:scanner_type,==,physical|different:asset_id']
         ];
     }
 }

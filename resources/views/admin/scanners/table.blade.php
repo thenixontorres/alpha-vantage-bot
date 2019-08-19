@@ -79,10 +79,10 @@
 
                         @if($scanner->status == 'on')
                             {{ Form::hidden('status', 'off') }}
-                            <button class="btn btn-pill btn-success"><i class="fa fa-play"></i></button>
+                            <button class="btn btn-pill btn-success"><i class="fa fa-envelope-o"></i></button>
                         @else
                             {{ Form::hidden('status', 'on') }}
-                            <button class="btn btn-pill btn-warning"><i class="fa fa-stop"></i></button>
+                            <button class="btn btn-pill btn-secondary"><i class="fa fa-envelope-o"></i></button>
                         @endif
                         
                     {!! Form::close() !!}
