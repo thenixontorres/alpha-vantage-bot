@@ -9,7 +9,7 @@
             <a href="{{route('admin.users.create')}}" class="btn btn-pill btn-primary float-right"><i class="fa fa-plus"></i></a>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 pb-4">
             <div class="card">
                 <div class="card-header border-0">
                   <div class="custom-title-wrap bar-info">

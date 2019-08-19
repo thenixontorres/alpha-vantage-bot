@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center pb-4">
-          <div class="col-md-12">
+          <div class="col-md-12 ">
               <div class="card">
                   <div class="card-header border-0">
                     <div class="custom-title-wrap bar-info">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="row justify-content-center" >
-        <div class="col-md-12">
+        <div class="col-md-12 pb-4">
             <div class="card">
                 <div class="card-header border-0">
                   <div class="custom-title-wrap bar-info">
