@@ -33,6 +33,7 @@ class AlphaVantage
 		
 		$response = json_decode($response->getBody()->getContents(), true);
 		
+
 		if (isset($response['note']) || isset($response['Note']) || isset($response['Error Message'])) 
 		{
 			return false;
