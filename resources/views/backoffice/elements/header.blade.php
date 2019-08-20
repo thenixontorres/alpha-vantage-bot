@@ -54,7 +54,7 @@
                             <div class="user-thumb">
                                 <img 
                                     class="rounded-circle" 
-                                    src="{{ asset('img/turtle.png')}}" 
+                                    src="{{ asset('img/avatar.png')}}" 
                                     alt=""
                                 />
                                 {{ Auth::user()->name }}<i class="icon-options-vertical" style="margin: 7px 0 0 4px; float: right;"> </i>
