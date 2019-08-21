@@ -91,7 +91,19 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-xl-8 col-md-8">
+            <div class="card card-shadow mb-4">
+                <div class="card-header border-0">
+                    <div class="custom-title-wrap bar-success">
+                        <div class="custom-title">Alertas</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="signal-chart" height="100"></canvas>
+                </div>
+            </div>
+        </div>
+        {{-- 
 		<div class="col-xl-8 col-md-8">
 			<div class="card">
                 <div class="card-header border-0">
@@ -117,9 +129,55 @@
                 </div>
             </div>
 		</div>
+        --}}
        
     </div>
 
 </div>
+@endsection
+
+@section('js')
+@parent
+    <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js')}}"></script>
+    <script>
+        $(function () {
+            "use strict";
+            // doughnut_chart
+            var signals_url = '{{ route('backoffice.charts.getSignalsData') }}';
+
+            $.get(signals_url).then(setSignals);
+
+            function setSignals(data){
+
+                var canvas = document.getElementById("signal-chart");
+                
+                var setting = {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.porcents,
+                        backgroundColor: data.backgrounds,
+                        borderWidth: [
+                            "0px",
+                            "0px",
+                            "0px",
+                            "0px"
+                        ],
+                        borderColor: data.backgrounds
+                    }]
+                };
+
+                var myDoughnutChart = new Chart(canvas, {
+                    type: 'doughnut',
+                    data: setting,
+                    options: {
+                        legend: {
+                            display: true
+                        }
+                    }
+                });
+
+            }
+        });
+    </script>
 @endsection
 
