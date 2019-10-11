@@ -1,10 +1,5 @@
 @extends('layouts.backoffice')
 
-@section('css')
-@parent
-<link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}">
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center pb-4" >
@@ -64,7 +59,5 @@
 
 @section('js')
 @parent
-<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('js/default_datatable.js')}}"></script>
 @endsection

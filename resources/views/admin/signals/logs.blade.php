@@ -2,10 +2,6 @@
 
 @section('title', 'Logs')
 
-@section('css')
-@parent
-<link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css')}}">
-@endsection
 
 @section('content')
 <div class="container">
@@ -57,10 +53,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-@parent
-<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 @endsection

@@ -47,6 +47,8 @@ class ApplyStrategiesCommand extends Command
         /*1 Verificamos el status general del scanner */
         $this->warn('1) Scanner status:');
 
+        $now = now();
+
         $interval = $this->argument('interval');
 
         $status = getSetting('status');
@@ -71,7 +73,7 @@ class ApplyStrategiesCommand extends Command
                 {
                     $this->info($scanner->strategies->first()->title.' - '.$scanner->asset->symbol);
 
-                    $response = $this->scannerRepository->applyStrategy($scanner);
+                    $response = $this->scannerRepository->applyStrategy($scanner, 'system', $now;
 
                     if ($response['success']) 
                     {
