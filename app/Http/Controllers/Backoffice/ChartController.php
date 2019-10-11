@@ -14,6 +14,7 @@ class ChartController extends Controller
                 ->join('scanners', 'signals.scanner_id', '=', 'scanners.id')
                 ->select(['signals.*', 'scanners.scanner_type'])
                 ->where('scanners.user_id', '=', auth()->user()->id)
+                ->where('signals.valid', '=', true)
                 ->get();
         
         $total = $signals->count(); 

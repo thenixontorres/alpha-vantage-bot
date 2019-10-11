@@ -24,6 +24,11 @@ trait StrategyPresenter
 		return $this->code.'_summary_fields';
 	}
 
+	public function getResultsFieldsAttribute()
+	{
+		return $this->code.'_results_fields';
+	}
+	
 	public function getNotificationFieldsArrayAttribute()
 	{
         return unserialize($this->notification_fields);
