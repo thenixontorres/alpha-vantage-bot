@@ -44,6 +44,7 @@ class StrategiesTableSeeder extends Seeder
             'status'        => 'on',
             'template'      => serialize($template),
             'created_at'    => now(),
+            'api_request'   => 2
         ]);
 
         $template  =
@@ -85,6 +86,7 @@ class StrategiesTableSeeder extends Seeder
             'status'         => 'on',
             'template'      => serialize($template),
             'created_at'    => now(),
+            'api_request'   => 3
         ]);
 
         $template  =
@@ -128,6 +130,7 @@ class StrategiesTableSeeder extends Seeder
             'status'         => 'on',
             'template'      => serialize($template),
             'created_at'    => now(),
+            'api_request'   => 2
         ]);
 
         $template  =
@@ -156,6 +159,7 @@ class StrategiesTableSeeder extends Seeder
             'status'         => 'on',
             'template'      => serialize($template),
             'created_at'    => now(),
+            'api_request'   => 2
         ]);
 
         $template  =
@@ -200,6 +204,7 @@ class StrategiesTableSeeder extends Seeder
             'status'         => 'on',
             'template'      => serialize($template),
             'created_at'    => now(),
+            'api_request'   => 2
         ]);
     }
 }
