@@ -65,6 +65,8 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         
                         <a class="dropdown-item" href="{{ route('admin.scanners.edit', [$scanner]) }}">Configurar escaner</a>
+                        
+                        <a class="dropdown-item" href="{{ route('backoffice.schedules.edit', [$scanner]) }}">Configurar horarios</a>
 
                         {!! Form::open(['route' => ['admin.scanners.destroy', $scanner], 'method' => 'delete', 'id'=> 'del-'.$scanner->id]) !!}
                             <a class="dropdown-item" href="#" onclick="del('{{$scanner->id}}');">Eliminar escaner</a>
