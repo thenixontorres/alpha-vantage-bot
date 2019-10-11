@@ -26,6 +26,12 @@ Route::post('scanners/detachStrategy','ScannerController@detachStrategy')->name(
 
 Route::post('scanners/attachStrategy','ScannerController@attachStrategy')->name('scanners.attachStrategy');
 
+Route::resource('schedules', 'ScheduleController')->only(['store','index']);
+
+Route::get('schedules/{scanner}/getScannerSchedules','ScheduleController@getScannerSchedules')->name('schedules.getScannerSchedules');
+
+Route::get('schedules/{scanner}/edit','ScheduleController@edit')->name('schedules.edit');
+
 Route::middleware(['auth', 'on'])->group(function () {
 
 	Route::get('scanners/apply/{scanner}','ScannerController@apply')->name('scanners.apply');

@@ -32,7 +32,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('backoffice.signals.index') }}"> <i class="fa fa-warning"></i> Todas</a>
+                            <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['all']) }}"> <i class="fa fa-warning"></i> Todas</a>
 
                             <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['stock_market']) }}">  <i class="fa fa-building"></i> Acciones</a>
                             <a class="dropdown-item" href="{{ route('backoffice.signals.index', ['physical']) }}"> <i class="fa fa-money"></i> Forex</a>
@@ -64,7 +64,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dashNav">
                             
-                            <a class="dropdown-item" href="{{ route('admin.signals.index') }}"><i class="fa fa-warning"></i> Todas</a>
+                            <a class="dropdown-item" href="{{ route('admin.signals.index', 'all') }}"><i class="fa fa-warning"></i> Todas</a>
 
                             <a class="dropdown-item" href="{{ route('admin.signals.index', ['stock_market']) }}"><i class="fa fa-building"></i>  Acciones</a>
                             <a class="dropdown-item" href="{{ route('admin.signals.index', ['physical']) }}"><i class="fa fa-money"></i> Forex</a>

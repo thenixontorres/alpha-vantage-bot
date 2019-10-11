@@ -73,7 +73,7 @@ class ApplyStrategiesCommand extends Command
                 {
                     $this->info($scanner->strategies->first()->title.' - '.$scanner->asset->symbol);
 
-                    $response = $this->scannerRepository->applyStrategy($scanner, 'system', $now;
+                    $response = $this->scannerRepository->applyStrategy($scanner, 'system', $now);
 
                     if ($response['success']) 
                     {

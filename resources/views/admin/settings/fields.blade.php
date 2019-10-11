@@ -12,6 +12,11 @@
         </div>
 
         <div class="form-group col-md-12">
+            {{Form::label('request_per_minute','Cantidad máxima de peticiones por minuto:')}}
+            {{Form::number('request_per_minute' ,null, ['class'=> 'form-control', 'required'])}} 
+        </div>
+
+        <div class="form-group col-md-12">
             {{Form::label('notifications_mail','Email de notificaciones:')}}
             {{Form::email('notifications_mail' ,null, ['class'=> 'form-control', 'required'])}}
             <small id="statusHelp" class="form-text text-muted"> Email que recibira las notificaciones luego de una alerta. </small> 

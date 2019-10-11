@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Backoffice;
 
 use Illuminate\Foundation\Http\FormRequest;
- 
-class UpdateSettingRequest extends FormRequest
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Rules\ScheduleLimitValidation;
+
+class CreateScheduleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +24,11 @@ class UpdateSettingRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'status' => 'required',
-            'scanners_limit' => 'integer|required',
-            'notifications_mail' => 'bail|required',
-            'alpha_vantage_api' => 'required',
-            'request_per_minute' => 'required',
+        	'scanner_id' => 'integer|required',
+        	'schedules' => ['array','nullable',new ScheduleLimitValidation($this->scanner_id)]
         ];
     }
 }

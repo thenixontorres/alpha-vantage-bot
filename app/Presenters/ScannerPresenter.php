@@ -4,6 +4,18 @@ namespace App\Presenters;
 
 trait ScannerPresenter
 {  	
+	public function getRequestListAttribute(){
+
+		$list = 0;
+
+		foreach($this->strategies as $strategy)
+		{
+			$list = $list+$strategy->api_request;
+		}
+
+		return $list;
+	}
+	
 	public function getCountColsAttribute(){
 
 		$count = count($this->strategies);

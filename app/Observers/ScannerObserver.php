@@ -42,6 +42,11 @@ class ScannerObserver
         {
             $signal->delete();
         }
+
+        foreach ($scanner->schedules as $schedule) 
+        {
+            $schedule->delete();
+        }
     }
 
     /**

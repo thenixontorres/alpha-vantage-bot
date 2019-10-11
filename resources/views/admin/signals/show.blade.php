@@ -15,7 +15,7 @@
                             <th>Fecha y Hora</th>
                             <th>Activo</th>
                             <th>Configuraciones</th>
-                            {{--<th>Horarios</th>--}}
+                            <th>Horarios</th>
                             <th>Consulta</th>
                             <th>Resultado</th>      
                         </thead>
@@ -29,11 +29,11 @@
                                 @endforeach
                             </td>
                             
-                            {{--<td>
+                            <td>
                                 @foreach($signal->scanner->schedules as $schedule)
                                     {{$schedule->time}} - 
                                 @endforeach
-                            </td>--}}
+                            </td>
                             <td>
                             	@foreach($signal->scanner->strategies as $strategy)
                             		<h5>{{$strategy->title}}:</h5>
