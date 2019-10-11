@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'app\Console\Commands\DumpAutoload',
-        'app\Console\Commands\ApplyStrategiesCommand',
+        //'app\Console\Commands\ApplyStrategiesCommand',
+        'app\Console\Commands\ApplySchedulesCommand',
     ];
 
     /**
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        /*
         $schedule->command('strategies:apply', ['interval', '1min'])->everyMinute();
         $schedule->command('strategies:apply', ['interval', '5min'])->everyFiveMinutes();
         $schedule->command('strategies:apply', ['interval', '15min'])->everyFifteenMinutes();
@@ -33,6 +35,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('strategies:apply', ['interval', 'daily'])->daily();
         $schedule->command('strategies:apply', ['interval', 'weekly'])->weekly();
         $schedule->command('strategies:apply', ['interval', 'monthly'])->monthly();
+        */
+        $schedule->command('schedules:apply')->everyMinute();
     }
 
     /**
