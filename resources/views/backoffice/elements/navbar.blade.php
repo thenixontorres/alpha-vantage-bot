@@ -86,6 +86,10 @@
                                 <i class="fa fa-gear"> Configuración</i>
                             </a>
 
+                            <a class="dropdown-item" href="{{ route('backoffice.signals.logs') }}">
+                                <i class="fa fa-clock-o"> Logs</i>
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('auth.logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

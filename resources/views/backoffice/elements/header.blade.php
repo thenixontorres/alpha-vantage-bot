@@ -72,6 +72,8 @@
 
                                 <a class="dropdown-item" href="{{ route('admin.keys.index') }}"> <i class="fa fa-key"></i> Llaves</a>
 
+                                <a class="dropdown-item" href="{{ route('admin.signals.logs', [now()->format('Y-m-d'), 'ALL']) }}"> <i class="fa fa-clock-o"></i> Logs</a>
+
 
                             @endif
 

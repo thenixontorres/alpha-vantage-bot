@@ -17,9 +17,13 @@ class CreateSignalsTable extends Migration
             $table->bigIncrements('id');
             $table->longText('data');
             $table->enum('status', ['ignored','success', 'failed'])->default('ignored');
+            $table->boolean('valid')->default(true);
+            $table->integer('ratio')->default(0);
+            $table->timestamp('exec_time')->nullable();
+            $table->enum('exec_type', ['system','test'])->default('system');
             $table->softDeletes();
             $table->unsignedBigInteger('scanner_id');
-        $table->foreign('scanner_id')->references('id')->on('scanners');
+            $table->foreign('scanner_id')->references('id')->on('scanners');
             $table->timestamps();
         });
     }

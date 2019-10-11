@@ -195,7 +195,7 @@ class ScannerController extends Controller
 
     public function apply(Scanner $scanner)
     {
-        $response = $this->scannerRepository->applyStrategy($scanner);
+        $response = $this->scannerRepository->applyStrategy($scanner, 'test', now());
         
         return response()->json($response, $response['code']);
     }

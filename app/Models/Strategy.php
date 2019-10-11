@@ -17,7 +17,8 @@ class Strategy extends Model
         'title',
         'template',
         'status',
-        'function_name'
+        'function_name',
+        'api_request'
     ];
 
     public function scanners()

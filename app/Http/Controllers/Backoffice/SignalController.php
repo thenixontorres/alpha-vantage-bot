@@ -19,12 +19,14 @@ class SignalController extends Controller
                 ->select(['signals.*', 'scanners.scanner_type'])
                 ->where('scanners.scanner_type', '=', $type)
                 ->where('scanners.user_id', '=', auth()->user()->id)
+                ->where('signals.valid', '=', true)
                 ->get();
         }else{
             $signals = Signal::orderBy('created_at', 'DESC')
                 ->join('scanners', 'signals.scanner_id', '=', 'scanners.id')
                 ->select(['signals.*', 'scanners.scanner_type'])
                 ->where('scanners.user_id', '=', auth()->user()->id)
+                ->where('signals.valid', '=', true)
                 ->get();
         }
 

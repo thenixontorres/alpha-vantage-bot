@@ -20,6 +20,7 @@ class CreateStrategiesTable extends Migration
             $table->text('notification_fields');
             $table->text('template');
             $table->enum('status', ['on','off'])->default('off');
+            $table->integer('api_request')->default(2);
             $table->softDeletes();  
             $table->timestamps();
         });

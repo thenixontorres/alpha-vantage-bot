@@ -15,6 +15,7 @@ class Setting extends Model
         'status',
         'alpha_vantage_api',
         'notifications_mail',
-        'scanners_limit'
+        'scanners_limit',
+        'request_per_minute'
     ];
 }

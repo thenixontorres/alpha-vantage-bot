@@ -19,6 +19,7 @@ class CreateSettingsTable extends Migration
             $table->string('alpha_vantage_api');
             $table->string('notifications_mail');
             $table->string('scanners_limit')->default(3);
+            $table->integer('request_per_minute')->default(5);
             $table->softDeletes();
             $table->timestamps();
         });

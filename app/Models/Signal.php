@@ -16,8 +16,16 @@ class Signal extends Model
         'scanner_id',
         'status',
         'data',
+        'valid',
+        'ratio',
+        'exec_time',
+        'exec_type'
     ];
 
+    protected $casts = [
+        'exec_time' => 'datetime'
+    ];
+    
     public function scanner()
     {
         return $this->belongsTo(Scanner::class);

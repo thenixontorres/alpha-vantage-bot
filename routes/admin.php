@@ -10,9 +10,12 @@ Route::resource('strategies', 'StrategyController')->only(['index','update']);
 
 Route::resource('settings', 'SettingController')->only(['index','update']);
 
-Route::resource('signals', 'SignalController')->only(['update']);
+Route::resource('signals', 'SignalController')->only(['update', 'show']);
+
+Route::get('signals/logs/{date?}/{type?}','SignalController@logs')->name('signals.logs');
 
 Route::get('signals/index/{type?}','SignalController@index')->name('signals.index');
+
 
 Route::resource('scanners', 'ScannerController')->except(['index','show']);
 

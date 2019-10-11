@@ -15,6 +15,8 @@ use App\Traits\AlphaVantage;
 class ScannerRepository extends BaseRepository
 {
 	
+	private $price;
+
 	private $series_type = [
 		'open' => '1. open',
 		'high' => '2. high', 
@@ -191,12 +193,17 @@ class ScannerRepository extends BaseRepository
 	}
 
 	/*aplica las estrategias al scaner*/
-	public function applyStrategy(Scanner $scanner)
+	public function applyStrategy(Scanner $scanner, $exec_type = 'system', $exec_time = null)
 	{
 		$response = [];
 
+		/*Si todas las estrategias coinciden*/
 		$general_alert = true;
 
+		/*si la alerta es de compra/venta y diferente a la ultima alerta*/
+		$is_valid = false;
+		
+		/*cantidad de estrategias acertadas*/
 		$succes_strategies = 0;
 
 		/*aplicamos las estrategias asociadas al scanner*/
@@ -240,30 +247,38 @@ class ScannerRepository extends BaseRepository
 			}
 		}
 
-		/*verificamos la alerta anterior*/
+		/*Si laas estrategias coinciden, entoncesnecesitamos saber si es valida la alerta*/
 		if ($general_alert) 
 		{
-			if (!empty($scanner->signals->last())) 
+			if (!empty($scanner->signals->where('valid', true)->last())) 
 			{
-				$previous = $scanner->signals->last();
+				/*obtenemos la ultima alerta valida*/
+				$previous = $scanner->signals->where('valid', true)->last();
 				
+				/**Obtenemos el tipo de la alerta actual*/
 				$values = array_values($response);
+				$type_alert = $values[0]['type'];
 
-				if ($previous->just_type == $values[0]['type']) 
+				/*Si el tipo de senal es diferente al anterior entonces es valida*/
+				if ($previous->just_type != $type_alert) 
 				{
-					$general_alert = false;
+					$is_valid = true;
 				}
+			}else{
+				/*si no hay una alerta previa con la cual comparar entonces es valida*/
+				$is_valid = true;
 			}
 		}
 
 		/*si hay una alerta la registramos */
-		if ($general_alert) 
-		{
-			$signal = new Signal();
-			$signal->scanner_id = $scanner->id;
-			$signal->data = serialize($response);
-			$signal->save();
-		}
+		$signal = new Signal();
+		$signal->scanner_id = $scanner->id;
+		$signal->data = serialize($response);
+		$signal->valid = $is_valid;
+		$signal->exec_type = $exec_type;
+		$signal->exec_time = (empty($exec_time)) ? now() : $exec_time;
+		$signal->ratio = $succes_strategies;
+		$signal->save();
 
 		return [
 			'success' => true,
@@ -431,7 +446,12 @@ class ScannerRepository extends BaseRepository
 
 		$fast = $alphaVantage->get($fast_request);
 		
-		$price = $alphaVantage->getPrice($default_request['symbol']);
+		if (empty($this->price)) 
+		{
+			$price = $alphaVantage->getPrice($default_request['symbol']);
+		}else{
+			$price = $this->price;
+		}
 
 		if (!$fast || !$slow || !$price) 
 		{
@@ -532,7 +552,12 @@ class ScannerRepository extends BaseRepository
 		
 		$stoch = $alphaVantage->get($stoch_request);
 
-		$price = $alphaVantage->getPrice($stoch_request['symbol']);
+		if (empty($this->price)) 
+		{
+			$price = $alphaVantage->getPrice($stoch_request['symbol']);
+		}else{
+			$price = $this->price;
+		}
 
 		if (!$stoch || !$price) 
 		{
@@ -626,7 +651,12 @@ class ScannerRepository extends BaseRepository
 
 		$rsi = $alphaVantage->get($request_data);
 
-		$price = $alphaVantage->getPrice($request_data['symbol']);
+		if (empty($this->price)) 
+		{
+			$price = $alphaVantage->getPrice($request_data['symbol']);
+		}else{
+			$price = $this->price;
+		}
 
 		if (!$rsi || !$price) 
 		{

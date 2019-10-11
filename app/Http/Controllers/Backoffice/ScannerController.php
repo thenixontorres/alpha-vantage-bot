@@ -224,7 +224,7 @@ class ScannerController extends Controller
             return redirect()->back();
         }
 
-		$response = $this->scannerRepository->applyStrategy($scanner);
+        $response = $this->scannerRepository->applyStrategy($scanner, 'test', now());
 		
 		return response()->json($response, $response['code']);
 	}
