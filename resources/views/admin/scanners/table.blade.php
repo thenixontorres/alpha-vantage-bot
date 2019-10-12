@@ -7,7 +7,7 @@
             <th>Resumen</th>
             <th>Vincular</th>
             <th>Acciones</th>
-            <th>Estatus</th>
+            <th>Notificaciones</th>
             <th>Escanear</th>
         </tr>
     </thead>
@@ -33,6 +33,9 @@
             </td>
             <td> 
                 @foreach($scanner->strategies as $strategy)
+                    @if(!empty($scanner->group))
+                        <p><b>Grupo:</b> {{$scanner->group->name}}</p>
+                    @endif
                     @include('backoffice.strategies.'.$strategy->summary_fields, ['settings_array'=> $scanner->settings_array])
                 @endforeach
             </td>
@@ -65,8 +68,6 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         
                         <a class="dropdown-item" href="{{ route('admin.scanners.edit', [$scanner]) }}">Configurar escaner</a>
-                        
-                        <a class="dropdown-item" href="{{ route('backoffice.schedules.edit', [$scanner]) }}">Configurar horarios</a>
 
                         {!! Form::open(['route' => ['admin.scanners.destroy', $scanner], 'method' => 'delete', 'id'=> 'del-'.$scanner->id]) !!}
                             <a class="dropdown-item" href="#" onclick="del('{{$scanner->id}}');">Eliminar escaner</a>
