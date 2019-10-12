@@ -1,9 +1,8 @@
-{{-- 
-<div class="form-group col-md-6">
-	{{Form::label('asset_id','Activo:')}}
-    {{Form::select('asset_id', $assets , $scanner->asset_id, ['class'=> 'form-control', 'placeholder'=>'Seleccione el activo','required'])}}
+
+<div class="form-group col-md-12">
+	{{Form::label('group_id','Grupo:')}}
+    {{Form::select('group_id', $groups , $scanner->group_id, ['class'=> 'form-control', 'placeholder'=>'Seleccione un grupo de horario'])}}
 </div>
---}}
 
 <div class="form-group col-md-12">
 	{{Form::label('interval','Temporalidad de la gráfica:')}}

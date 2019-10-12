@@ -25,7 +25,7 @@ class UpdateScannerRequest extends FormRequest
     {
         return [
             'interval' => 'required',
-            //'asset_id' => 'integer|required',
+            'group_id' => 'integer|nullable',
         ];
     }
 }

@@ -49,6 +49,7 @@ class ScannerRepository extends BaseRepository
 		//$model->asset_id = $inputs['asset_id'];
 
 		$model->interval = $inputs['interval'];
+		$model->group_id = $inputs['group_id'];
 		
 		/*actualizamos el periodo en cada estrategia*/
 		$settings = $model->settings_array;

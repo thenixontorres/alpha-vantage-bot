@@ -32,6 +32,7 @@
                 @endforeach
             </td>
             <td> 
+                <p><b>Grupo:</b> {{$scanner->group->name}}</p>
                 @foreach($scanner->strategies as $strategy)
                     @include('backoffice.strategies.'.$strategy->summary_fields, ['settings_array'=> $scanner->settings_array])
                 @endforeach
@@ -66,8 +67,6 @@
                         
                         <a class="dropdown-item" href="{{ route('backoffice.scanners.edit', [$scanner]) }}">Configurar escaner</a>
                         
-                        <a class="dropdown-item" href="{{ route('backoffice.schedules.edit', [$scanner]) }}">Configurar horarios</a>
-
                         {!! Form::open(['route' => ['backoffice.scanners.destroy', $scanner], 'method' => 'delete', 'id'=> 'del-'.$scanner->id]) !!}
                             <a class="dropdown-item" href="#" onclick="del('{{$scanner->id}}');">Eliminar escaner</a>
                         {!! Form::close() !!}

@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Scanner;
 use App\Models\Asset;
 use App\Models\Strategy;
+use App\Models\Group;
 use Auth;
 use App\Abstracts\AlphaVantage;
 /**
@@ -102,10 +103,12 @@ class ScannerController extends Controller
 
         $series = $this->scannerRepository->getSeries();
 
+        $groups = Auth::user()->groups->pluck('name','id');
     	//$assets = Asset::orderBy('created_at', 'desc')->where('status', 'on')->pluck('symbol', 'id');
 
         //dd($scanner->settings_array);
         return view('backoffice.scanners.edit')
+            ->with('groups', $groups)
 			->with('scanner', $scanner)
 			->with('intervals', $intervals)
 			->with('series', $series);
@@ -123,7 +126,7 @@ class ScannerController extends Controller
 		$input = $request->validated();
 
 		$update = $this->scannerRepository->update($input, $scanner);
-
+        
         toast($update['message'], $update['type'] ,'top-right');
 
         return redirect()->back();

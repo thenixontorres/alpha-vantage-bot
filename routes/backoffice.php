@@ -18,6 +18,8 @@ Route::resource('scanners', 'ScannerController')->except(['index','show']);
 
 Route::get('scanners/index/{type?}','ScannerController@index')->name('scanners.index');
 
+Route::get('scanners/editGroups/{scanner}','ScannerController@editGroups')->name('scanners.editGroups');
+
 Route::patch('scanners/updateSettings/{scanner}','ScannerController@updateSettings')->name('scanners.updateSettings');
 
 Route::patch('scanners/updateStatus/{scanner}','ScannerController@updateStatus')->name('scanners.updateStatus');
