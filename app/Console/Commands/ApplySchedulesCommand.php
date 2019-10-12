@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Carbon\CarbonImmutable;
 use App\Models\Scanner;
 use App\Models\Schedule;
+use App\Models\Group;
 use App\Models\Signal;
 use App\Repositories\ScannerRepository;
 use Illuminate\Support\Facades\Log;
@@ -82,40 +83,39 @@ class ApplySchedulesCommand extends Command
             /*2 Buscamos los scanners que esten encendidos */
             $this->warn('2) Finding active schedules to: '.$time.' time:');
 
-            $schedules = Schedule::where('time', $time)->get();
-
-            $this->info($schedules->count().' schedules found');
+            $schedule = Schedule::where('time', $time)->first();
 
             /*3 Aplicamos las estrategias correspondientes a cada scanner */
             $this->warn('3) Applying strategies:');
 
-            foreach ($schedules as $schedule) 
+            foreach ($schedule->groups as $group) 
             {
-                if ($schedule->scanner->status != 'on') 
+                foreach ($group->scanners as $scanner) 
                 {
-                    $this->info('Scanner '.$schedule->scanner->id.' is inactive. SKIP');
-
-                    break;
-                }
-
-                $this->info('Scanner '.$schedule->scanner->id.' is active. START');
-
-                $scanner = $schedule->scanner;
-
-                if (!empty($scanner->strategies->first())) 
-                {
-                    $this->info($scanner->strategies->first()->title.' - '.$scanner->merged_symbols);
-
-                    $response = $this->scannerRepository->applyStrategy($scanner, 'system', $now);
-
-                    if ($response['success']) 
+                    if ($scanner->status != 'on') 
                     {
-                        $this->info('success!');
-                    }else{
-                        $this->info('fail!');
+                        $this->info('Scanner '.$scanner->id.' is inactive. SKIP');
+
+                        break;
                     }
-                    
-                    $this->warn('----------------------------------------------');
+
+                    $this->info('Scanner '.$scanner->id.' is active. START');
+
+                    if (!empty($scanner->strategies->first())) 
+                    {
+                        $this->info($scanner->strategies->first()->title.' - '.$scanner->merged_symbols);
+
+                        $response = $this->scannerRepository->applyStrategy($scanner, 'system', $now);
+
+                        if ($response['success']) 
+                        {
+                            $this->info('success!');
+                        }else{
+                            $this->info('fail!');
+                        }
+                        
+                        $this->warn('----------------------------------------------');
+                    }
                 }
             }
         }

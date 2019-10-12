@@ -7,9 +7,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\User;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
 {
+
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepo)
+    {
+        $this->userRepository = $userRepo;
+    }
 
     public function index($type = 'all')
     {
@@ -28,18 +36,7 @@ class UserController extends Controller
     {
         $input = $request->validated();
 
-        if (!empty($input['password'])) 
-        {
-            $input['password'] = bcrypt($input['password']);
-        }else{
-            $input['password'] = bcrypt($input['email']);
-        }
-
-        $user = new User();
-
-        $user->fill($input);
-
-        $user->save();
+        $this->userRepository->create($input);
 
         toast('Usuario registrado con exito', 'success' ,'top-right');
 

@@ -89,7 +89,10 @@ class ScannerController extends Controller
 
         $series = $this->scannerRepository->getSeries();
 
+        $groups = $scanner->user->groups->pluck('name','id');
+
         return view('admin.scanners.edit')
+            ->with('groups', $groups)
 			->with('scanner', $scanner)
 			->with('intervals', $intervals)
 			->with('series', $series);

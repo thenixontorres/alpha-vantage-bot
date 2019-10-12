@@ -34,6 +34,8 @@ class ScannerController extends Controller
     {        
         /*estrategias para el dropdown*/
         $strategies = Strategy::orderBy('created_at', 'desc')->where('status', 'on')->get();
+        
+        $groups = Auth::user()->groups->pluck('name','id');
 
         if ($type != 'all') 
         {
@@ -62,7 +64,8 @@ class ScannerController extends Controller
         }
        
         return view('backoffice.scanners.index')
-        	->with('type', $type)
+            ->with('groups', $groups)
+            ->with('type', $type)
             ->with('scanners', $scanners)
             ->with('strategies', $strategies)
             ->with('assets', $assets);

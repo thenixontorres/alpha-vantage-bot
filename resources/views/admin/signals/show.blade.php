@@ -15,7 +15,7 @@
                             <th>Fecha y Hora</th>
                             <th>Activo</th>
                             <th>Configuraciones</th>
-                            <th>Horarios</th>
+                            <th>Horario</th>
                             <th>Consulta</th>
                             <th>Resultado</th>      
                         </thead>
@@ -30,9 +30,7 @@
                             </td>
                             
                             <td>
-                                @foreach($signal->scanner->schedules as $schedule)
-                                    {{$schedule->time}} - 
-                                @endforeach
+                                {{$signal->scanner->group->name}} 
                             </td>
                             <td>
                             	@foreach($signal->scanner->strategies as $strategy)

@@ -20,5 +20,11 @@
         
         {{Form::select('strategy_id[]', $strategies->pluck('title', 'id'), null, ['class'=> 'form-control select2', 'required', 'multiple'=>'multiple'])}}
     </div>
-
+  
+    <div class="form-group col-md-12">
+        
+        {{Form::label('group_id','Grupo:')}}
+        
+        {{Form::select('group_id', $groups, null, ['class'=> 'form-control select2', 'placeholder'=>'Seleccione el grupo'])}}
+    </div>
 </div>

@@ -26,6 +26,7 @@ class CreateScannerRequest extends FormRequest
     {
         return [
             'asset_id' => ['integer','required'],
+            'group_id' => ['integer','nullable'],
             'strategy_id' => ['array','required'],
             'scanner_type' => 'required',
             'asset_to_id' => ['required_if:scanner_type,==,physical|different:asset_id']
