@@ -21,7 +21,8 @@ class Scanner extends Model
         'email_notifications',
         'pool_notifications',
         'scanner_type',
-        'user_id'
+        'user_id',
+        'group_id',
     ];
 
     public function user()
@@ -32,6 +33,11 @@ class Scanner extends Model
     public function asset()
     {
         return $this->belongsTo(Asset::class, 'asset_id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id');
     }
 
     public function assetTo()

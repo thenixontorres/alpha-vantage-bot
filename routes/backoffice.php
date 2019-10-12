@@ -4,6 +4,10 @@ Route::get('/','HomeController@index')->name('index');
 
 Route::get('charts/getSignalsData','ChartController@getSignalsData')->name('charts.getSignalsData');
 
+Route::resource('groups', 'GroupController');
+
+Route::get('groups/{group}/getGroupSchedules','GroupController@getGroupSchedules')->name('groups.getGroupSchedules');
+
 Route::resource('users', 'UserController')->only(['index','update']);
 
 Route::resource('signals', 'SignalController')->only(['update']);

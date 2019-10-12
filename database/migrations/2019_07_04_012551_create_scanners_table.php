@@ -24,9 +24,10 @@ class CreateScannersTable extends Migration
             $table->enum('email_notifications', ['on','off'])->default('off');
             $table->enum('pool_notifications', ['on','off'])->default('on');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('asset_id')->references('id')->on('assets');
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('asset_to_id')->references('id')->on('assets');
             $table->foreign('user_id')->references('id')->on('users');
         });

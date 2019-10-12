@@ -39,6 +39,12 @@
                             <a class="dropdown-item" href="#"> <i class="fa fa-bitcoin"></i> Criptos</a>
                         </div>
                     </li>
+                    
+                    <li class="nav-item">
+                    
+                        <a class="nav-link mr-lg-3" id="" href="{{ route('backoffice.groups.index') }}">Mis horarios</a>
+                    
+                    </li>
 
                     @if(Auth::user()->type == 'admin')
                     

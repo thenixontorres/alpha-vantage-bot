@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Scanner');
     }
+
+    public function groups()
+    {
+        return $this->hasMany('App\Models\Group');
+    }
 }

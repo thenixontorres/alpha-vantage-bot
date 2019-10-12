@@ -13,12 +13,11 @@ class Schedule extends Model
 
     protected $fillable = [
         'time', 
-        'scanner_id'
     ];
 
 
-    public function scanner()
+    public function groups()
     {
-    	return $this->belongsTo(Scanner::class);
+    	return $this->belongsToMany(Group::class);
     }
 }
