@@ -76,6 +76,20 @@ class SignalController extends Controller
 
     }
 
+    public function creanLogs($date, $type)
+    {
+        $logs = $this->signalRepository->getLogsByDate($date, $type);
+
+        foreach ($logs as $log) 
+        {
+            $log->delete();
+        }
+
+        toast('Logs con fecha '. $date . ' tipo ' .$type . ' limpiados con exito', 'success' ,'top-right');
+
+        return redirect()->back();
+    }
+
     public function show(Signal $signal)
     {
         return view('admin.signals.show')

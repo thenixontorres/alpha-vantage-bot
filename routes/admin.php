@@ -16,6 +16,8 @@ Route::get('signals/logs/{date?}/{type?}','SignalController@logs')->name('signal
 
 Route::get('signals/index/{type?}','SignalController@index')->name('signals.index');
 
+Route::get('signals/creanLogs/{date}/{type}','SignalController@creanLogs')->name('signals.creanLogs');
+
 
 Route::resource('scanners', 'ScannerController')->except(['index','show']);
 

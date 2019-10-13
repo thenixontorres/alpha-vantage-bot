@@ -41,6 +41,8 @@
                         <div class="card-header"> 
                             scanner-{{$date}}.log 
                             <a class="btn btn-success float-right btn-pill" href="{{route('admin.signals.logs', [$date, $type])}}"><i class="fa fa-refresh"></i> Actualizar</a> 
+                            <a class="btn btn-danger float-right btn-pill" href="{{route('admin.signals.creanLogs', [$date, $type])}}"><i class="fa fa-trash"></i> Limpiar</a> 
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive-sm">
