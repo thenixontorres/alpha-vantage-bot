@@ -32,10 +32,12 @@
                 @endforeach
             </td>
             <td> 
+                @if(!empty($scanner->group))
+                    <p><b>Grupo:</b> {{$scanner->group->name}}</p>
+                @endif
+
                 @foreach($scanner->strategies as $strategy)
-                    @if(!empty($scanner->group))
-                        <p><b>Grupo:</b> {{$scanner->group->name}}</p>
-                    @endif
+                   
                     @include('backoffice.strategies.'.$strategy->summary_fields, ['settings_array'=> $scanner->settings_array])
                 @endforeach
             </td>
