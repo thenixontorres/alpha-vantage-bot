@@ -677,7 +677,7 @@ class ScannerRepository extends BaseRepository
 
 		/*Eliminamos los key de la respuesta y obtenelos solo las listas de valores del indicador */
 
-		/*lista de valores del stoch */	
+		/*lista de valores del rsi */	
 		$rsi = array_values($rsi)[1];
 		
 		/*Ultimo valor del rsi*/
@@ -692,13 +692,18 @@ class ScannerRepository extends BaseRepository
 		$a = ($previous['RSI'] < 30);
 
 		/* EL rsi actual esta sobre 30 */
-		$b = ($last['RSI'] > 30);
+		//$b = ($last['RSI'] > 30);
+
+		/* EL rsi actual es mayor al anterior (esta subiendo) */
+		$b = ($last['RSI'] > $previous['RSI']);
 
 		/* El rsi previos  estanba sobre 70*/
 		$c = ($previous['RSI'] > 70);
 
 		/* EL rsi actual esta bajo 70 */
-		$d = ($last['RSI'] < 70);
+		//$d = ($last['RSI'] < 70);
+		/* EL rsi actual es menor al anterior (esta bajando) */
+		$d = ($last['RSI'] < $previous['RSI']);
 
 		/*Respuesta por default*/
 		$data_signal = [
